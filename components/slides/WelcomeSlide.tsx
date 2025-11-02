@@ -162,3 +162,4 @@ export default function WelcomeSlide({ onComplete, onDownload, completedSections
     </div>
   )
 }
+

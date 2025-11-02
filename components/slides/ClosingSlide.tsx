@@ -42,7 +42,7 @@ export default function ClosingSlide({ onComplete, onDownload, completedSections
     },
     {
       title: "Vibe Coding",
-      description: "Personalizaste la IA con tu estilo único",
+      description: "Pasaste de idea a prototipo funcional iterando con IA",
       icon: <Award className="w-8 h-8 text-orange-500" />,
       status: completedSections.includes('vibe-coding')
     }
@@ -190,7 +190,7 @@ export default function ClosingSlide({ onComplete, onDownload, completedSections
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Vibe Coding para personalización</span>
+                    <span className="text-gray-700">Vibe Coding: pasaste de idea a prototipo funcional iterando con IA y buenas practicas basicas.</span>
                   </li>
                 </ul>
               </div>
@@ -250,3 +250,13 @@ export default function ClosingSlide({ onComplete, onDownload, completedSections
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
