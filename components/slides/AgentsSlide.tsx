@@ -1,15 +1,7 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
-import {
-  CheckCircle,
-  Brain,
-  Target,
-  Settings,
-  BarChart3,
-  RefreshCw,
-  Zap
-} from 'lucide-react'
+import { CheckCircle, Brain, Target, Settings, BarChart3, RefreshCw, Zap } from 'lucide-react'
 
 interface AgentsSlideProps {
   onComplete: (sectionId: string) => void
@@ -17,19 +9,19 @@ interface AgentsSlideProps {
   completedSections: string[]
 }
 
-export default function AgentsSlide({ onComplete, onDownload, completedSections }: AgentsSlideProps) {
+export default function AgentsSlide({ onComplete, onDownload: _onDownload, completedSections }: AgentsSlideProps) {
   const isCompleted = completedSections.includes('agents')
 
   const concepts = [
     {
-      title: 'A�QuAc es un Agent?',
-      description: 'Sistema de IA que toma decisiones autA3nomas usando herramientas y contexto',
+      title: '¿Qué es un Agent?',
+      description: 'Sistema de IA que toma decisiones autónomas usando herramientas y contexto',
       icon: <Brain className="w-8 h-8 text-purple-500" />,
       details: [
-        'Puede usar mA�ltiples herramientas',
+        'Puede usar múltiples herramientas',
         'Toma decisiones basadas en contexto',
         'Aprende y mejora con el tiempo',
-        'Trabaja de forma autA3noma'
+        'Trabaja de forma autónoma'
       ]
     },
     {
@@ -40,19 +32,19 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
         'Goal: Objetivo claro y medible',
         'Tools: Herramientas disponibles',
         'Memory: Contexto y aprendizaje',
-        'Reasoning: LA3gica de decisiA3n',
-        'OrquestaciA3n (Host): App donde vive el agente (ej. ChatGPT) que coordina subagentes y conexiones MCP'
+        'Reasoning: Lógica de decisión',
+        'Orquestación (Host): App donde vive el agente (ej. ChatGPT) que coordina subagentes y conexiones MCP'
       ]
     },
     {
-      title: 'CuA�ndo usar Agents',
+      title: 'Cuándo usar Agents',
       description: 'Situaciones ideales para implementar agents',
       icon: <Target className="w-8 h-8 text-green-500" />,
       details: [
         'Procesos largos y complejos',
         'Decisiones condicionales',
         'Tareas repetitivas automatizables',
-        'AnA�lisis de datos en tiempo real',
+        'Análisis de datos en tiempo real',
         'Integraciones IoT y negocio con MCP (smart home, Tesla, CRM, finanzas)'
       ]
     }
@@ -60,21 +52,21 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
 
   const agentExample = {
     name: 'Content Curator Agent',
-    goal: 'Curar contenido relevante desde Google Sheets, buscar noticias, resumir y clasificar automA�ticamente',
+    goal: 'Curar contenido relevante desde Google Sheets, buscar noticias, resumir y clasificar automáticamente',
     tools: ['Google Sheets API', 'News API', 'OpenAI API', 'Email Service'],
     workflow: [
       'Lee lista de temas desde Google Sheets',
       'Busca noticias relevantes en tiempo real',
-      'Analiza y resume cada artA-culo',
-      'Clasifica por relevancia y categorA-a',
+      'Analiza y resume cada artículo',
+      'Clasifica por relevancia y categoría',
       'Actualiza la base de datos con nuevos contenidos',
-      'EnvA-a resumen semanal al equipo'
+      'Envía resumen semanal al equipo'
     ],
     metrics: [
-      'ArtA-culos procesados por dA-a',
-      'PrecisiA3n de clasificaciA3n',
+      'Artículos procesados por día',
+      'Precisión de clasificación',
       'Tiempo de respuesta promedio',
-      'SatisfacciA3n del equipo'
+      'Satisfacción del equipo'
     ]
   }
 
@@ -82,52 +74,51 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
     name: 'IoT + Tesla Agent',
     goal: 'Controlar funciones del auto y de casa con voz o texto desde ChatGPT',
     tools: [
-      'MCP Server para Tesla (via Tesla Fleet API o GRAM a partir de OpenAPI)',
+      'MCP Server para Tesla (vía Tesla Fleet API o GRAM a partir de OpenAPI)',
       'Home Assistant MCP (luces, clima, escenas)',
       'OpenAI API (razonamiento)',
       'Notificaciones (correo/Slack)'
     ],
     workflow: [
-      'Preacondiciona el clima del Tesla y verifica baterAa',
+      'Preacondiciona el clima del Tesla y verifica batería',
       'Baja o sube ventanas bajo ciertas condiciones',
       'Activa modo noche en casa (luces, clima, escenas)',
-      'Si hay alerta, envAa notificaciA3n y registra el evento'
+      'Si hay alerta, envía notificación y registra el evento'
     ],
     metrics: [
       'Comandos ejecutados correctamente',
       'Latencia de respuesta',
-      'Incidencias resueltas sin intervenciA3n humana',
-      'SatisfacciA3n del usuario'
+      'Incidencias resueltas sin intervención humana',
+      'Satisfacción del usuario'
     ]
   }
 
   const architecturePoints = [
-    'Host (ChatGPT): aquA- vive tu agente principal y su interfaz.',
-    'Apps SDK: agrega lA3gica y pantallas ligeras dentro de ChatGPT.',
+    'Host (ChatGPT): aquí vive tu agente principal y su interfaz.',
+    'Apps SDK: agrega lógica y pantallas ligeras dentro de ChatGPT.',
     'MCP Servers: publican herramientas y datos externos (tus APIs, docs, automatizaciones).',
     'Subagentes: especialistas por dominio que el host coordina.'
   ]
 
   const bestPractices = [
     'Empieza simple: una herramienta para leer y otra para crear.',
-    'Describe bien cada herramienta: quA� hace, quA� necesita y quA� devuelve.',
+    'Describe bien cada herramienta: qué hace, qué necesita y qué devuelve.',
     'Cuida permisos: solo lo necesario.',
     'Prueba con ejemplos cortos antes de armar el flujo completo.'
   ]
 
   const commonUseCases = [
-    'AnA�lisis automA�tico de documentos.',
+    'Análisis automático de documentos.',
     'Reportes semanales.',
-    'ClasificaciA3n de correos.',
-    'SincronizaciA3n de bases entre apps.'
+    'Clasificación de correos.',
+    'Sincronización de bases entre apps.'
   ]
 
   const integrationCards = [
     {
       title: 'Zapier MCP',
       color: 'text-blue-600',
-      body:
-        'Acceso a mA�s de 8,000 apps y 30,000 acciones (correo, archivos, proyectos, ventas, pagos, calendario).',
+      body: 'Acceso a más de 8,000 apps y 30,000 acciones (correo, archivos, proyectos, ventas, pagos, calendario).',
       tail: 'Ideal para flujos de negocio: contratos, carpetas, facturas, tareas.'
     },
     {
@@ -147,25 +138,27 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
   const realWorldScenarios = [
     {
       title: 'Operaciones de negocio',
-      description:
-        '"Se cerrA3 el cliente X": genera contrato, carpeta, factura, tareas y notifica al equipo.'
+      description: '"Se cerró el cliente X": genera contrato, carpeta, factura, tareas y notifica al equipo.'
     },
     {
       title: 'Smart home',
-      description:
-        '"Pon la casa en modo noche": luces, clima, seguridad y registro del evento.'
+      description: '"Pon la casa en modo noche": luces, clima, seguridad y registro del evento.'
     },
     {
-      title: 'VehA-culo',
-      description:
-        '"Calienta el Tesla y baja ventanas traseras cuando llegue a 24°C".'
+      title: 'Vehículo',
+      description: '"Calienta el Tesla y baja ventanas traseras cuando llegue a 24 °C".'
     },
     {
       title: 'Contenido y soporte',
-      description:
-        '"Escribe el correo, adjunta el PDF y registra el ticket con prioridad".'
+      description: '"Escribe el correo, adjunta el PDF y registra el ticket con prioridad".'
     }
   ]
+
+  const handleMarkComplete = () => {
+    if (!isCompleted) {
+      onComplete('agents')
+    }
+  }
 
   return (
     <div className="slide-container">
@@ -176,9 +169,9 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="slide-title">dY- Agents: Sistemas AutA3nomos</h1>
+          <h1 className="slide-title">🤖 Agents: Sistemas Autónomos</h1>
           <p className="slide-subtitle text-primary-600">
-            IA que piensa y actA�a por sA- misma
+            IA que piensa y actúa por sí misma
           </p>
         </motion.div>
 
@@ -220,7 +213,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           </div>
 
           <p className="text-sm text-gray-600 max-w-4xl mx-auto mt-6 text-center">
-            En ChatGPT, el agente principal (host) puede coordinar subagentes y herramientas externas a travA�s de MCP y el Apps SDK. Eso permite que la IA no solo hable, sino que ejecute acciones reales con tus datos y sistemas.
+            En ChatGPT, el agente principal (host) puede coordinar subagentes y herramientas externas a través de MCP y el Apps SDK. Eso permite que la IA no solo hable, sino que ejecute acciones reales con tus datos y sistemas.
           </p>
         </motion.div>
 
@@ -230,7 +223,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">Ejemplo PrA�ctico: Content Curator Agent</h2>
+          <h2 className="section-title text-center mb-8">Ejemplo Práctico: Content Curator Agent</h2>
 
           <div className="max-w-5xl mx-auto">
             <div className="card">
@@ -279,7 +272,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4 flex items-center">
                   <BarChart3 className="w-5 h-5 mr-2 text-purple-500" />
-                  MActricas de A%xito
+                  Métricas de Éxito
                 </h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   {agentExample.metrics.map(metric => (
@@ -300,7 +293,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">Ejemplo PrA�ctico 2: IoT + Tesla Agent</h2>
+          <h2 className="section-title text-center mb-8">Ejemplo Práctico 2: IoT + Tesla Agent</h2>
 
           <div className="max-w-5xl mx-auto">
             <div className="card">
@@ -349,7 +342,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4 flex items-center">
                   <BarChart3 className="w-5 h-5 mr-2 text-purple-500" />
-                  MActricas de A%xito
+                  Métricas de Éxito
                 </h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   {iotAgentExample.metrics.map(metric => (
@@ -370,7 +363,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">Arquitectura prA?ctica en ChatGPT</h2>
+          <h2 className="section-title text-center mb-8">Arquitectura práctica en ChatGPT</h2>
           <div className="max-w-4xl mx-auto">
             <div className="card">
               <ul className="space-y-3">
@@ -391,12 +384,12 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">Framework de DiseA�o de Agents</h2>
+          <h2 className="section-title text-center mb-8">Framework de Diseño de Agents</h2>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="card">
-                <h3 className="text-xl font-semibold mb-4 text-blue-600">dYZ_ Definir Objetivo</h3>
+                <h3 className="text-xl font-semibold mb-4 text-blue-600">🧭 Definir Objetivo</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <Target className="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0" />
@@ -404,17 +397,17 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
                   </li>
                   <li className="flex items-start">
                     <Target className="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Criterios de Acxito definidos</span>
+                    <span className="text-gray-700">Criterios de éxito definidos</span>
                   </li>
                   <li className="flex items-start">
                     <Target className="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Restricciones y lA-mites claros</span>
+                    <span className="text-gray-700">Restricciones y límites claros</span>
                   </li>
                 </ul>
               </div>
 
               <div className="card">
-                <h3 className="text-xl font-semibold mb-4 text-green-600">Seleccionar Herramientas</h3>
+                <h3 className="text-xl font-semibold mb-4 text-green-600">🛠️ Seleccionar Herramientas</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <Settings className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
@@ -426,21 +419,21 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
                   </li>
                   <li className="flex items-start">
                     <Settings className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Sistemas de notificaciA3n</span>
+                    <span className="text-gray-700">Sistemas de notificación</span>
                   </li>
                   <li className="flex items-start">
                     <Settings className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Conecta herramientas vAa MCP Servers (incluye Zapier MCP para miles de apps)</span>
+                    <span className="text-gray-700">Conecta herramientas vía MCP Servers (incluye Zapier MCP para miles de apps)</span>
                   </li>
                   <li className="flex items-start">
                     <Settings className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Si tu API es OpenAPI, genera un MCP server con GRAM y A-salo de inmediato</span>
+                    <span className="text-gray-700">Si tu API es OpenAPI, genera un MCP server con GRAM y úsalo de inmediato</span>
                   </li>
                 </ul>
               </div>
 
               <div className="card">
-                <h3 className="text-xl font-semibold mb-4 text-purple-600">dY� Configurar Memoria</h3>
+                <h3 className="text-xl font-semibold mb-4 text-purple-600">🧠 Configurar Memoria</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <Brain className="w-5 h-5 text-purple-500 mr-3 mt-1 flex-shrink-0" />
@@ -458,11 +451,11 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
               </div>
 
               <div className="card">
-                <h3 className="text-xl font-semibold mb-4 text-orange-600">dY", Establecer LA3gica</h3>
+                <h3 className="text-xl font-semibold mb-4 text-orange-600">🔁 Establecer Lógica</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <RefreshCw className="w-5 h-5 text-orange-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Proceso de decisiA3n claro</span>
+                    <span className="text-gray-700">Proceso de decisión claro</span>
                   </li>
                   <li className="flex items-start">
                     <RefreshCw className="w-5 h-5 text-orange-500 mr-3 mt-1 flex-shrink-0" />
@@ -470,7 +463,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
                   </li>
                   <li className="flex items-start">
                     <RefreshCw className="w-5 h-5 text-orange-500 mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Criterios de escalaciA3n</span>
+                    <span className="text-gray-700">Criterios de escalación</span>
                   </li>
                 </ul>
               </div>
@@ -484,10 +477,10 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 1.0 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">Consejos de implementaciA3n</h2>
+          <h2 className="section-title text-center mb-8">Consejos de implementación</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="card">
-              <h3 className="text-lg font-semibold text-emerald-600 mb-4">�o. Mejores prA�cticas</h3>
+              <h3 className="text-lg font-semibold text-emerald-600 mb-4">✅ Mejores prácticas</h3>
               <ul className="space-y-3">
                 {bestPractices.map(item => (
                   <li key={item} className="flex items-start">
@@ -499,7 +492,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
             </div>
 
             <div className="card">
-              <h3 className="text-lg font-semibold text-blue-600 mb-4">dY'� Casos de uso comunes</h3>
+              <h3 className="text-lg font-semibold text-blue-600 mb-4">💡 Casos de uso comunes</h3>
               <ul className="space-y-3">
                 {commonUseCases.map(item => (
                   <li key={item} className="flex items-start">
@@ -536,7 +529,7 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           transition={{ duration: 0.6, delay: 1.2 }}
           className="mb-16"
         >
-          <h2 className="section-title text-center mb-8">QuA� podrA-an ser en la vida real</h2>
+          <h2 className="section-title text-center mb-8">Qué podrían ser en la vida real</h2>
           <div className="max-w-4xl mx-auto">
             <div className="card">
               <ul className="space-y-3">
@@ -554,11 +547,20 @@ export default function AgentsSlide({ onComplete, onDownload, completedSections 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="text-center"
+          className="text-center space-y-4"
         >
           <p className="text-gray-700 text-lg">
             Con ChatGPT como host, Apps SDK para la interfaz y MCP Servers para las acciones, tus agentes pasan de hablar a ejecutar.
           </p>
+
+          <button
+            onClick={handleMarkComplete}
+            className={`btn-primary inline-flex items-center space-x-2 ${isCompleted ? 'opacity-50 cursor-default' : ''}`}
+            aria-disabled={isCompleted}
+          >
+            <CheckCircle className="w-4 h-4" />
+            <span>{isCompleted ? 'Sección completada' : 'Marcar como completada'}</span>
+          </button>
         </motion.div>
       </div>
     </div>
