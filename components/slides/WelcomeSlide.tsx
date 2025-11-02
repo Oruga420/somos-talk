@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { 
@@ -83,9 +83,9 @@ export default function WelcomeSlide({ onComplete, onDownload, completedSections
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
                 <Palette className="w-8 h-8 text-orange-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Vibe Coding</h3>
+              <h3 className="text-xl font-semibold mb-3">Vibe Coding: de idea a app en horas</h3>
               <p className="text-gray-600">
-                Enseña a la IA tu estilo y personalidad única
+                Aprende a describir tu app, generar codigo con IA, iterar con errores reales y publicar rapido.
               </p>
             </div>
           </div>
@@ -162,4 +162,9 @@ export default function WelcomeSlide({ onComplete, onDownload, completedSections
     </div>
   )
 }
+
+
+
+
+
 
