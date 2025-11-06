@@ -1,274 +1,120 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { 
-  CheckCircle, 
-  Brain,
-  Search,
-  Image,
-  Video,
-  Mic,
-  Zap
-} from 'lucide-react'
+import { Target, Users, ListChecks, ArrowRight } from 'lucide-react'
 
-interface IntroAISlideProps {
+interface QuickCheckSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
   completedSections: string[]
 }
 
-export default function IntroAISlide({ onComplete, onDownload, completedSections }: IntroAISlideProps) {
-  const isCompleted = completedSections.includes('intro-ai')
+const QUESTIONS = [
+  '¿Quién ya usa ChatGPT o Copilot regularmente?',
+  '¿Quién ha construido prompts largos o usa contextos guardados?',
+  '¿Quién ha conectado IA con datos o procesos reales?',
+]
 
-  const aiTypes = [
-    {
-      title: "Modelos de Lenguaje (LLMs)",
-      examples: "ChatGPT, Claude, Gemini",
-      icon: <Brain className="w-8 h-8 text-blue-500" />,
-      description: "Generan texto conversacional y creativo"
-    },
-    {
-      title: "Modelos de Búsqueda",
-      examples: "Perplexity, You.com",
-      icon: <Search className="w-8 h-8 text-green-500" />,
-      description: "Buscan y sintetizan información actualizada"
-    },
-    {
-      title: "Modelos Generativos de Imagen",
-      examples: "Midjourney, DALL-E, NanoBanana",
-      icon: <Image className="w-8 h-8 text-purple-500" />,
-      description: "Crean imágenes a partir de descripciones"
-    },
-    {
-      title: "Modelos Generativos de Video",
-      examples: "Runway, Pika Labs, Sora, Veo",
-      icon: <Video className="w-8 h-8 text-pink-500" />,
-      description: "Generan y editan video con IA"
-    },
-    {
-      title: "Modelos de Voz/Audio",
-      examples: "ElevenLabs, Suno, Udio",
-      icon: <Mic className="w-8 h-8 text-orange-500" />,
-      description: "Generan audio, música y voces sintéticas"
-    },
-    {
-      title: "Modelos de Automatización",
-      examples: "Zapier, Make, ChatGPT Automations",
-      icon: <Zap className="w-8 h-8 text-red-500" />,
-      description: "Automatizan tareas y flujos de trabajo"
+export default function IntroAISlide({ onComplete, completedSections }: QuickCheckSlideProps) {
+  const isCompleted = completedSections.includes('quick-check')
+
+  const handleComplete = () => {
+    if (!isCompleted) {
+      onComplete('quick-check')
     }
-  ]
+  }
 
   return (
     <div className="slide-container">
-      <div className="slide-content">
-        {/* Header */}
+      <div className="slide-content space-y-14">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center"
         >
-          <h1 className="slide-title">
-            🤖 Introducción a la IA
-          </h1>
+          <h1 className="slide-title">Quick Check · Dónde está la clase respecto a IA</h1>
           <p className="slide-subtitle text-primary-600">
-            Qué es y qué no es la inteligencia artificial
+            Objetivo: calibrar rápido el nivel del grupo para ajustar el ritmo y los ejemplos.
           </p>
         </motion.div>
 
-        {/* Custom GPTs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mb-16"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="grid md:grid-cols-2 gap-6"
         >
-          <div className="max-w-5xl mx-auto">
-            <div className="card">
-              <h2 className="section-title mb-4">GPTs personalizados: crea tu propio asistente</h2>
-              <p className="text-gray-700 mb-6">
-                Los GPTs personalizados son versiones de ChatGPT configuradas para un objetivo específico. 
-                Pueden tener instrucciones, archivos adjuntos y acciones conectadas a APIs externas.
-              </p>
+          <div className="card">
+            <div className="flex items-center gap-3 mb-4">
+              <Target className="w-5 h-5 text-primary-600" />
+              <h2 className="text-lg font-semibold">Cómo correrlo</h2>
+            </div>
+            <p className="text-gray-700 mb-4">
+              Usa una slide interactiva (tipo Mentimeter) o un simple show of hands. En menos de 3 minutos
+              tenemos un mapa del grupo y ajustamos ejemplos y profundidad.
+            </p>
+            <ul className="space-y-3 text-gray-700">
+              {QUESTIONS.map((question) => (
+                <li key={question} className="flex items-start gap-3">
+                  <ArrowRight className="w-4 h-4 text-primary-500 mt-1 shrink-0" />
+                  <span>{question}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Elementos clave</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-500 mr-3 mt-2" />
-                      <div>
-                        <strong>Nombre y descripción</strong>
-                        <div className="text-gray-600 text-sm">Define su propósito.</div>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-500 mr-3 mt-2" />
-                      <div>
-                        <strong>Instrucciones</strong>
-                        <div className="text-gray-600 text-sm">Cómo debe comportarse.</div>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-500 mr-3 mt-2" />
-                      <div>
-                        <strong>Archivos</strong>
-                        <div className="text-gray-600 text-sm">Base de conocimiento (PDFs, manuales, políticas, etc.).</div>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-500 mr-3 mt-2" />
-                      <div>
-                        <strong>Acciones</strong>
-                        <div className="text-gray-600 text-sm">Integraciones con otros servicios (p. ej., enviar correos, buscar info, crear tickets).</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">Ejemplo de uso</h4>
-                  <p className="text-sm text-gray-700">
-                    Un GPT para soporte interno: lee manuales PDF, responde preguntas frecuentes, crea tickets en tu sistema y envía resúmenes por correo.
-                  </p>
-                </div>
-              </div>
+          <div className="card">
+            <div className="flex items-center gap-3 mb-4">
+              <Users className="w-5 h-5 text-primary-600" />
+              <h2 className="text-lg font-semibold">Lectura rápida</h2>
+            </div>
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              No importa el punto de partida. El mensaje es claro: hoy se llevan patrones que escalan en cualquier nivel.
+              Con base en las respuestas, enlazamos ejemplos junior o senior sin perder a nadie.
+            </p>
+            <div className="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-slate-700 leading-relaxed">
+              Frame explícito:
+              <br />
+              <strong>La IA no reemplaza tu expertise, la amplifica.</strong> Diseñamos contexto y usamos workflows para
+              que el criterio humano escale sin perder control.
             </div>
           </div>
         </motion.div>
 
-        {/* What AI Is and Isn't */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-16"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="card bg-gradient-to-br from-primary-50 to-white"
         >
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="card">
-                <h2 className="text-2xl font-bold mb-6 text-red-600">❌ Lo que NO es la IA</h2>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-600 text-sm">✗</span>
-                    </div>
-                    <span className="text-gray-700">No es magia ni reemplazo humano</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-600 text-sm">✗</span>
-                    </div>
-                    <span className="text-gray-700">No piensa como los humanos</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-600 text-sm">✗</span>
-                    </div>
-                    <span className="text-gray-700">No tiene conciencia o emociones</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-red-600 text-sm">✗</span>
-                    </div>
-                    <span className="text-gray-700">No es infalible ni perfecta</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="card">
-                <h2 className="text-2xl font-bold mb-6 text-green-600">✅ Lo que SÍ es la IA</h2>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-green-600 text-sm">✓</span>
-                    </div>
-                    <span className="text-gray-700">Sistema estadístico que aprende patrones</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-green-600 text-sm">✓</span>
-                    </div>
-                    <span className="text-gray-700">Aplica patrones a nuevas entradas</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-green-600 text-sm">✓</span>
-                    </div>
-                    <span className="text-gray-700">Produce salidas relevantes basadas en contexto</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-green-600 text-sm">✓</span>
-                    </div>
-                    <span className="text-gray-700">Herramienta que amplifica capacidades humanas</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div className="flex items-center gap-3 mb-3">
+            <ListChecks className="w-5 h-5 text-primary-600" />
+            <h3 className="text-lg font-semibold">Tips para el facilitador</h3>
           </div>
+          <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
+            <li>• Pide ejemplos concretos cuando alguien ya conecta IA con datos reales.</li>
+            <li>• Si hay resistencia, recuerda que veremos demos tácticas y métricas reales.</li>
+            <li>• Usa los resultados para decidir qué demos corremos en vivo.</li>
+          </ul>
         </motion.div>
 
-        {/* Simple Explanation */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-16"
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="flex flex-col items-center"
         >
-          <div className="max-w-4xl mx-auto">
-            <div className="card text-center bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Brain className="w-10 h-10 text-white" />
-              </div>
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">En palabras simples:</h2>
-              <p className="text-xl text-gray-700 mb-4">
-                <strong>La IA predice la palabra, imagen o acción más probable según tu contexto.</strong>
-              </p>
-              <p className="text-lg text-gray-600">
-                Es como tener un asistente súper inteligente que ha leído millones de textos, 
-                visto millones de imágenes y puede ayudarte a crear contenido basándose en patrones que ha aprendido.
-              </p>
-            </div>
-          </div>
+          <button
+            onClick={handleComplete}
+            className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+          >
+            Quick Check listo
+          </button>
+          {isCompleted && (
+            <p className="text-sm text-primary-600 mt-3">Marcado como completado.</p>
+          )}
         </motion.div>
-
-        {/* AI Tools Types */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="section-title text-center mb-12">Tipos de herramientas que usarás</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aiTypes.map((type, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                className="card group hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    {type.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{type.title}</h3>
-                  <p className="text-sm text-gray-600 mb-3">{type.description}</p>
-                </div>
-                
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-sm font-medium text-gray-800 mb-1">Ejemplos:</p>
-                  <p className="text-sm text-gray-600">{type.examples}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Action buttons removed for presentation mode */}
       </div>
     </div>
   )

@@ -1,35 +1,28 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Download,
-  CheckCircle,
-  Clock,
-  Users,
-  Target
-} from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-// Import slide components
 import WelcomeSlide from '@/components/slides/WelcomeSlide'
 import IntroAISlide from '@/components/slides/IntroAISlide'
 import PromptStackingSlide from '@/components/slides/PromptStackingSlide'
 import MCPSlide from '@/components/slides/MCPSlide'
 import AgentsSlide from '@/components/slides/AgentsSlide'
 import VibeCodingSlide from '@/components/slides/VibeCodingSlide'
+import ShowcaseSlide from '@/components/slides/ShowcaseSlide'
 import ClosingSlide from '@/components/slides/ClosingSlide'
 import ScheduleBar from '@/components/ScheduleBar'
 
 const slides = [
-  { id: 'welcome', component: WelcomeSlide, title: 'Bienvenida' },
-  { id: 'intro-ai', component: IntroAISlide, title: 'Introducción a la IA' },
-  { id: 'prompt-stacking', component: PromptStackingSlide, title: 'Prompt + Context Stacking' },
-  { id: 'mcps', component: MCPSlide, title: 'MCPs' },
-  { id: 'agents', component: AgentsSlide, title: 'Agents' },
-  { id: 'vibe-coding', component: VibeCodingSlide, title: 'Vibe Coding' },
+  { id: 'welcome', component: WelcomeSlide, title: 'Somos: Apertura' },
+  { id: 'quick-check', component: IntroAISlide, title: 'Quick Check' },
+  { id: 'context-stacking', component: PromptStackingSlide, title: 'Context Stacking' },
+  { id: 'slack-bot', component: MCPSlide, title: 'Slack Bot' },
+  { id: 'agentic-workflows', component: AgentsSlide, title: 'Agentic Workflows' },
+  { id: 'custom-tools', component: VibeCodingSlide, title: 'Custom Tools & Fine-tuning' },
+  { id: 'showcase', component: ShowcaseSlide, title: 'Showcase' },
   { id: 'closing', component: ClosingSlide, title: 'Cierre' },
 ]
 
@@ -56,7 +49,7 @@ export default function Home() {
   const markSectionComplete = (sectionId: string) => {
     if (!completedSections.includes(sectionId)) {
       setCompletedSections([...completedSections, sectionId])
-      toast.success('¡Sección completada! 🎉')
+      toast.success('Sección marcada como completada')
     }
   }
 
@@ -70,23 +63,23 @@ export default function Home() {
     toast.success(`Descargando ${templateName}...`)
   }
 
-  // Autoplay desactivado
-
   const CurrentSlideComponent = slides[currentSlide].component
 
-  // Keyboard navigation: Left/Right arrows to navigate slides
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement
-      const tag = target?.tagName
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement
+      const tagName = target?.tagName
       const isEditable = target?.getAttribute('contenteditable') === 'true'
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || isEditable) return
 
-      if (e.key === 'ArrowRight') {
-        e.preventDefault()
+      if (tagName === 'INPUT' || tagName === 'TEXTAREA' || isEditable) {
+        return
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
         nextSlide()
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault()
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault()
         prevSlide()
       }
     }
@@ -97,17 +90,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <div className="progress-bar">
-          <div 
-            className="progress-fill"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="progress-fill" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
-      {/* Navigation Header */}
       <div className="fixed top-4 right-4 z-40 flex items-center space-x-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
         <div className="flex items-center space-x-2">
           <button
@@ -117,7 +105,7 @@ export default function Home() {
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          
+
           <button
             onClick={nextSlide}
             disabled={currentSlide === slides.length - 1}
@@ -126,15 +114,12 @@ export default function Home() {
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
-        
+
         <div className="text-sm text-gray-600">
           {currentSlide + 1} / {slides.length}
         </div>
       </div>
 
-      {/* Slide Counter removed as requested */}
-
-      {/* Main Content */}
       <div className="md:pr-72">
         <AnimatePresence mode="wait">
           <motion.div
@@ -144,7 +129,7 @@ export default function Home() {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
           >
-            <CurrentSlideComponent 
+            <CurrentSlideComponent
               onComplete={markSectionComplete}
               onDownload={downloadTemplate}
               completedSections={completedSections}
@@ -153,7 +138,6 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* Slide Navigation Dots */}
       <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
         {slides.map((_, index) => (
           <button
@@ -163,15 +147,14 @@ export default function Home() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
             className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide 
-                ? 'bg-primary-600' 
+              index === currentSlide
+                ? 'bg-primary-600'
                 : 'bg-gray-300 hover:bg-gray-400'
             }`}
           />
         ))}
       </div>
 
-      {/* Fixed Schedule Bar (right) */}
       <ScheduleBar currentSlideIndex={currentSlide} />
     </div>
   )
