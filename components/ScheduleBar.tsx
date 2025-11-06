@@ -8,14 +8,13 @@ interface ScheduleBarProps {
 }
 
 const SLOTS = [
-  { time: '00:00 - 00:05', title: 'Bienvenida Somos', key: 'welcome' },
-  { time: '00:05 - 00:15', title: 'Quick Check', key: 'quick-check' },
-  { time: '00:15 - 00:35', title: 'Context Stacking', key: 'context-stacking' },
-  { time: '00:35 - 00:55', title: 'Slack Bot', key: 'slack-bot' },
-  { time: '00:55 - 01:20', title: 'Agentic Workflows', key: 'agentic-workflows' },
-  { time: '01:20 - 01:40', title: 'Custom Tools & Fine-tuning', key: 'custom-tools' },
-  { time: '01:40 - 01:55', title: 'Showcase', key: 'showcase' },
-  { time: '01:55 - 02:00', title: 'Cierre & CTA', key: 'closing' },
+  { time: '00:00 - 00:10', title: 'Somos Welcome', key: 'welcome' },
+  { time: '00:10 - 00:40', title: 'Context Stacking', key: 'context-stacking' },
+  { time: '00:40 - 01:00', title: 'Slack Bot', key: 'slack-bot' },
+  { time: '01:00 - 01:25', title: 'Agentic Workflows', key: 'agentic-workflows' },
+  { time: '01:25 - 01:45', title: 'Custom Tools & Fine-tuning', key: 'custom-tools' },
+  { time: '01:45 - 01:55', title: 'Showcase', key: 'showcase' },
+  { time: '01:55 - 02:00', title: 'Closing & CTA', key: 'closing' },
 ]
 
 const SLIDE_TO_SLOT: Record<number, number> = {
@@ -26,7 +25,6 @@ const SLIDE_TO_SLOT: Record<number, number> = {
   4: 4,
   5: 5,
   6: 6,
-  7: 7,
 }
 
 export default function ScheduleBar({ currentSlideIndex }: ScheduleBarProps) {

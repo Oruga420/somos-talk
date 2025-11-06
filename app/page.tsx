@@ -6,7 +6,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import WelcomeSlide from '@/components/slides/WelcomeSlide'
-import IntroAISlide from '@/components/slides/IntroAISlide'
 import PromptStackingSlide from '@/components/slides/PromptStackingSlide'
 import MCPSlide from '@/components/slides/MCPSlide'
 import AgentsSlide from '@/components/slides/AgentsSlide'
@@ -16,14 +15,13 @@ import ClosingSlide from '@/components/slides/ClosingSlide'
 import ScheduleBar from '@/components/ScheduleBar'
 
 const slides = [
-  { id: 'welcome', component: WelcomeSlide, title: 'Somos: Apertura' },
-  { id: 'quick-check', component: IntroAISlide, title: 'Quick Check' },
+  { id: 'welcome', component: WelcomeSlide, title: 'Somos: Opening' },
   { id: 'context-stacking', component: PromptStackingSlide, title: 'Context Stacking' },
   { id: 'slack-bot', component: MCPSlide, title: 'Slack Bot' },
   { id: 'agentic-workflows', component: AgentsSlide, title: 'Agentic Workflows' },
   { id: 'custom-tools', component: VibeCodingSlide, title: 'Custom Tools & Fine-tuning' },
   { id: 'showcase', component: ShowcaseSlide, title: 'Showcase' },
-  { id: 'closing', component: ClosingSlide, title: 'Cierre' },
+  { id: 'closing', component: ClosingSlide, title: 'Closing' },
 ]
 
 export default function Home() {
@@ -49,7 +47,7 @@ export default function Home() {
   const markSectionComplete = (sectionId: string) => {
     if (!completedSections.includes(sectionId)) {
       setCompletedSections([...completedSections, sectionId])
-      toast.success('Sección marcada como completada')
+      toast.success('Section marked as completed')
     }
   }
 

@@ -12,18 +12,18 @@ interface WelcomeSlideProps {
 const OVERVIEW_ITEMS = [
   {
     icon: <Sparkles className="w-6 h-6 text-primary-600" />,
-    title: 'Patrones concretos',
-    description: 'Context stacking, agentes y herramientas que ya usamos en Assent.'
+    title: 'Concrete Playbooks',
+    description: 'Context stacking, agents, and tooling we already run inside Assent.'
   },
   {
     icon: <Users className="w-6 h-6 text-primary-600" />,
-    title: 'Casos reales',
-    description: 'Slack, Legal, Finance y Data Quality con métricas de impacto.'
+    title: 'Real Use Cases',
+    description: 'Slack, Legal, Finance, and Data Quality with impact metrics.'
   },
   {
     icon: <Target className="w-6 h-6 text-primary-600" />,
-    title: 'Acción inmediata',
-    description: 'CTA claro: lleva las plantillas y únete a La Sesh para seguir iterando.'
+    title: 'Actionable Follow-up',
+    description: 'Clear CTA: grab the templates and keep iterating with La Sesh.'
   },
 ]
 
@@ -40,15 +40,15 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           className="text-center"
         >
           <p className="text-sm uppercase tracking-[0.3em] text-primary-500 mb-4">
-            Somos · AI Patterns
+            Somos | AI Patterns
           </p>
           <h1 className="slide-title">
-            IA que amplifica el criterio humano
+            AI that amplifies human judgment
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-6 leading-relaxed">
-            Esta sesión es para compartir cómo operamos la inteligencia artificial en el día a día:
-            calibramos a la audiencia, mostramos cómo apilamos contexto y enseñamos workflows que
-            hoy dan valor en Assent. Nada de hype, puro delivery.
+            This session shows how we operate AI day to day:
+            how we calibrate the room, stack context, and ship workflows that already drive value at Assent.
+            No hype, just delivery.
           </p>
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <h2 className="section-title text-center mb-10">Lo que cubriremos</h2>
+          <h2 className="section-title text-center mb-10">What We Will Cover</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {OVERVIEW_ITEMS.map((item) => (
               <div key={item.title} className="card h-full">
@@ -79,19 +79,19 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           <div className="card bg-gradient-to-br from-primary-50 to-white">
             <h3 className="text-xl font-semibold mb-4">Mindset</h3>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Frame central: la IA no reemplaza tu expertise, la amplifica. 
-              Cuando apilamos contexto, diseñamos guardrails y construimos herramientas a medida,
-              la IA se vuelve un multiplicador del criterio humano, no un sustituto.
+              Core belief: AI does not replace your expertise, it amplifies it.
+              When we stack context, design guardrails, and build tools that match our workflows,
+              AI becomes a multiplier for human judgment instead of a replacement.
             </p>
             <div className="flex flex-wrap gap-3">
               <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
-                Calibrar rápido
+                Calibrate fast
               </span>
               <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
-                Operar con trazabilidad
+                Operate with guardrails
               </span>
               <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
-                Compartir playbooks reales
+                Share real playbooks
               </span>
             </div>
           </div>
@@ -111,11 +111,11 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
             }}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Lista la sala · vamos al Quick Check
+            Room is ready - jump to Context Stacking
           </button>
           {isCompleted && (
             <p className="text-sm text-primary-600 mt-3">
-              Marcado como completado.
+              Marked as completed.
             </p>
           )}
         </motion.div>

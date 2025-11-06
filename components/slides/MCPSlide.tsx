@@ -10,15 +10,15 @@ interface SlackBotSlideProps {
 }
 
 const BENEFITS = [
-  'Responde preguntas sobre políticas, documentos y procesos internos sin salir de Slack.',
-  'Aprende del contexto del canal y respeta permisos/roles.',
-  'Reduce fricción con HR, Legal y Compliance en preguntas repetitivas.',
+  'Answers policy, document, and process questions without leaving Slack.',
+  'Understands channel context and respects roles and permissions.',
+  'Cuts repetitive questions for HR, Legal, and Compliance teams.',
 ]
 
 const STACK = [
-  { title: 'Middleware', detail: 'LangChain + Python (FastAPI) para orquestar prompts y memoria.' },
-  { title: 'Conectores', detail: 'Slack Events API + OpenAI API + repos internos (SharePoint, Confluence).' },
-  { title: 'Control', detail: 'Logs, límites por request y fallback a agente humano cuando hay baja confianza.' },
+  { title: 'Middleware', detail: 'LangChain with Python (FastAPI) orchestrates prompts, memory, and routing.' },
+  { title: 'Connectors', detail: 'Slack Events API, OpenAI API, and internal repositories like SharePoint or Confluence.' },
+  { title: 'Control', detail: 'Request limits, logging, and human escalation when confidence drops below threshold.' },
 ]
 
 export default function MCPSlide({ onComplete, completedSections }: SlackBotSlideProps) {
@@ -39,9 +39,9 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Slack Bot · FAQ vivo para equipos internos</h1>
+          <h1 className="slide-title">Slack Bot - Live FAQ for Internal Teams</h1>
           <p className="slide-subtitle text-primary-600">
-            Propósito: reducir fricción diaria conectando Slack con OpenAI vía middleware seguro.
+            Purpose: remove daily friction by wiring Slack to OpenAI through a safe middleware layer.
           </p>
         </motion.div>
 
@@ -54,22 +54,22 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
               <MessageSquare className="w-5 h-5 text-primary-600" />
-              <h2 className="text-lg font-semibold">Qué resuelve</h2>
+              <h2 className="text-lg font-semibold">What it solves</h2>
             </div>
             <ul className="space-y-3 text-gray-700 leading-relaxed">
               {BENEFITS.map((benefit) => (
-                <li key={benefit}>• {benefit}</li>
+                <li key={benefit}>- {benefit}</li>
               ))}
             </ul>
             <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed">
-              Métrica interna: ~30% menos tickets de “¿dónde está…?” en equipos con alto volumen operativo.
+              Internal metric: roughly 30% fewer "where is that file?" tickets in high-volume teams.
             </div>
           </div>
 
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
               <Link2 className="w-5 h-5 text-primary-600" />
-              <h2 className="text-lg font-semibold">Arquitectura base</h2>
+              <h2 className="text-lg font-semibold">Reference architecture</h2>
             </div>
             <div className="space-y-3">
               {STACK.map((layer) => (
@@ -94,26 +94,26 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               Guardrails
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Permisos alineados a canales, filtros de PII y auditoría de prompts/respuestas.
+              Channel-aware permissions, PII filters, audit trail for prompts and responses.
             </p>
           </div>
           <div className="card">
             <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
               <BarChart3 className="w-4 h-4 text-primary-600" />
-              Medición
+              Measurement
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Dashboards de adopción: cuántas preguntas resueltas, temas más buscados y tiempo ahorrado.
+              Adoption dashboards: resolved questions, hot topics, and time saved per team.
             </p>
           </div>
           <div className="card">
             <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
               <Bot className="w-4 h-4 text-primary-600" />
-              Demo sugerida
+              Demo idea
             </div>
             <p className="text-sm text-slate-600 leading-relaxed flex items-start gap-2">
               <PlayCircle className="w-4 h-4 text-primary-600 mt-1 shrink-0" />
-              <span>Consulta “¿Cuál es la política de viajes?” y “¿Dónde está el template de contrato proveedor?” para mostrar precisión contextual.</span>
+              <span>Ask "What is our travel policy?" and "Where is the vendor contract template?" to show contextual accuracy.</span>
             </p>
           </div>
         </motion.div>
@@ -128,10 +128,10 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Slack bot revisado
+            Slack bot covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marcado como completado.</p>
+            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

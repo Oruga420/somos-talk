@@ -13,37 +13,37 @@ const HIGHLIGHTS = [
   {
     title: 'ElevenLabs',
     icon: <Mic2 className="w-6 h-6 text-primary-600" />,
-    description: 'Text-to-Speech con voces naturales en español e inglés.',
+    description: 'Natural text-to-speech in English and Spanish.',
     bullets: [
-      'Ideal para demos rápidas, training videos o contenido inclusivo.',
-      'Demo sugerida: tu voz generada leyendo una línea técnica.'
+      'Perfect for fast demos, training videos, or inclusive content.',
+      'Demo idea: generate your voice reading a technical line.'
     ],
   },
   {
     title: 'HeyGen',
     icon: <UserSquare className="w-6 h-6 text-primary-600" />,
-    description: 'Video avatars con lip-sync preciso y soporte multi-idioma.',
+    description: 'Lip-synced video avatars with multilingual support.',
     bullets: [
-      'Usa texto o audio para generar un presentador digital.',
-      'Demo: mismo guion, dos idiomas (ES/EN) para onboarding o marketing.'
+      'Use text or audio to create a digital presenter.',
+      'Demo idea: same script rendered in English and Spanish for onboarding.'
     ],
   },
   {
     title: 'Google AI Studio (Vibe Code)',
     icon: <Sparkles className="w-6 h-6 text-primary-600" />,
-    description: 'Entrena modelos que imitan tu tono y estilo de escritura.',
+    description: 'Train small models to copy your tone and writing style.',
     bullets: [
-      'Caso: tono “friendly but concise” para correos internos.',
-      'Demo: comparar salida neutral vs. salida con tu vibe.'
+      'Example: friendly-but-concise emails for internal comms.',
+      'Demo idea: compare neutral output vs. your vibe-coded version.'
     ],
   },
   {
     title: 'VS Code Plugins (Codex, Copilot, etc.)',
     icon: <Code2 className="w-6 h-6 text-primary-600" />,
-    description: 'IA integrada para explicar, refactorizar o documentar código.',
+    description: 'Embedded AI to explain, refactor, or document code.',
     bullets: [
-      'Ejemplo: “explica esta función” → docstring + tests sugeridos.',
-      'Onboarding más rápido para devs nuevos sin frenar entregas.'
+      'Example: "explain this function" -> docstring plus suggested tests.',
+      'Helps new engineers ramp up without slowing the team down.'
     ],
   },
 ]
@@ -66,9 +66,9 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Showcase · Creativo, útil y divertido</h1>
+          <h1 className="slide-title">Showcase - Creative, Useful, Fun</h1>
           <p className="slide-subtitle text-primary-600">
-            Objetivo: probar que IA no sólo automatiza backend — también impulsa experiencias.
+            Goal: prove that AI is not only automation, it can elevate experiences too.
           </p>
         </motion.div>
 
@@ -89,7 +89,7 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
               </div>
               <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
                 {item.bullets.map((bullet) => (
-                  <li key={bullet}>• {bullet}</li>
+                  <li key={bullet}>- {bullet}</li>
                 ))}
               </ul>
             </div>
@@ -106,10 +106,10 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Showcase mostrado
+            Showcase covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marcado como completado.</p>
+            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

@@ -12,23 +12,23 @@ interface AgenticSlideProps {
 const USE_CASES = [
   {
     title: 'Legal',
-    detail: 'Resume contratos o políticas externas. Identifica riesgos, cláusulas críticas y faltantes.'
+    detail: 'Summarise contracts or external policies. Flag risks, critical clauses, and gaps.'
   },
   {
     title: 'Regulatory',
-    detail: 'Normaliza requisitos de reportes. Genera matriz de cumplimiento con trazabilidad.'
+    detail: 'Normalise reporting requirements and produce compliance matrices with traceability.'
   },
   {
     title: 'Finance',
-    detail: 'Agrupa costos o riesgos por categoría y entrega reportes listos para revisión.'
+    detail: 'Aggregate costs or risk signals by category and deliver reviewer-ready dashboards.'
   },
 ]
 
 const PIPELINE = [
-  'Buscar material relevante (PDFs, carpetas internas, APIs).',
-  'Resumir por sección con estructura homogénea.',
-  'Analizar contra políticas internas y generar insight accionable.',
-  'Armar salida estructurada (JSON, tabla o presentación).',
+  'Search: gather PDFs, folders, and internal APIs relevant to the request.',
+  'Summarise: produce structured notes per section with consistent fields.',
+  'Analyse: compare against internal policies and surface actionable insight.',
+  'Deliver: output JSON, tables, or decks with citations for every data point.',
 ]
 
 export default function AgentsSlide({ onComplete, completedSections }: AgenticSlideProps) {
@@ -49,9 +49,9 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Agentic Workflows · Legal, Regulatory & Finance</h1>
+          <h1 className="slide-title">Agentic Workflows - Legal, Regulatory, Finance</h1>
           <p className="slide-subtitle text-primary-600">
-            Objetivo: automatizar tareas analíticas repetitivas con trazabilidad completa.
+            Goal: automate repetitive analytical tasks while preserving full traceability.
           </p>
         </motion.div>
 
@@ -63,15 +63,15 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
         >
           <div className="flex items-center gap-3 mb-4">
             <GitBranch className="w-5 h-5 text-primary-600" />
-            <h2 className="text-lg font-semibold">Flujo de varios pasos</h2>
+            <h2 className="text-lg font-semibold">Multi-step pipeline</h2>
           </div>
           <ul className="space-y-2 text-gray-700 leading-relaxed">
             {PIPELINE.map((step) => (
-              <li key={step}>• {step}</li>
+              <li key={step}>- {step}</li>
             ))}
           </ul>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed">
-            Herramientas: LangGraph o Airflow para orquestar, APIs internas como fuentes, y revisores humanos como último paso.
+            Tooling: LangGraph or Airflow to orchestrate, internal APIs as sources, human reviewers as the final gate.
           </p>
         </motion.div>
 
@@ -101,11 +101,11 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
           <div className="card bg-slate-50 border border-slate-200">
             <div className="flex items-center gap-3 mb-3">
               <FileText className="w-5 h-5 text-primary-600" />
-              <h3 className="text-lg font-semibold">Ejemplo</h3>
+              <h3 className="text-lg font-semibold">Example</h3>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
-              “Lee estos 3 PDFs regulatorios, genera matriz de requisitos y señala cambios críticos”.
-              El agente produce un CSV listo para revisión legal en menos de 5 minutos.
+              "Scan these three regulatory PDFs, build a requirement matrix, and highlight critical changes."
+              The agent returns a CSV ready for legal review in under five minutes.
             </p>
           </div>
           <div className="card bg-slate-50 border border-slate-200">
@@ -114,9 +114,9 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
               <h3 className="text-lg font-semibold">Guardrails</h3>
             </div>
             <ul className="space-y-2 text-sm text-slate-600 leading-relaxed">
-              <li>• Límites de alcance por agente y logs centralizados.</li>
-              <li>• Evidencia de fuentes citadas en cada salida.</li>
-              <li>• Revisión humana obligatoria antes de decisiones finales.</li>
+              <li>- Scope limits per agent and centralised logs.</li>
+              <li>- Citations for every source in the final output.</li>
+              <li>- Mandatory human approval before final decisions.</li>
             </ul>
           </div>
         </motion.div>
@@ -131,10 +131,10 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Agentic workflows listos
+            Agentic workflows covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marcado como completado.</p>
+            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

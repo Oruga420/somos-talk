@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Layers, Target, ClipboardList, Sparkles } from 'lucide-react'
+import { Layers, ClipboardList, Sparkles } from 'lucide-react'
 
 interface ContextStackingSlideProps {
   onComplete: (sectionId: string) => void
@@ -10,15 +10,24 @@ interface ContextStackingSlideProps {
 }
 
 const PRINCIPLES = [
-  'No es prompting mágico, es diseño de contexto.',
-  'Apilamos lo que el modelo necesita saber: rol, objetivo, estilo, reglas y snippets.',
-  'Cada capa reduce ruido y mueve al modelo hacia nuestro dominio.',
+  'This is not prompt magic; it is deliberate context design.',
+  'We stack what the model must know: role, objective, tone, rules, and snippets.',
+  'Every layer removes noise and pulls the model into our domain.',
 ]
 
 const FLOW_STEPS = [
-  { title: '1. Define rol y objetivo', detail: 'Ejemplo: “Eres analista de cumplimiento. Resume riesgos clave en formato legal breve”.' },
-  { title: '2. Apila contexto', detail: 'Incluye tono, estilo de decisión, glosario, plantillas y contraejemplos.' },
-  { title: '3. Pide la tarea', detail: 'Con el modelo alineado, solicita el entregable final. Resultado: 40% menos corrección manual.' },
+  {
+    title: '1. Define role and outcome',
+    detail: 'Example: "You are a compliance analyst. Summarize the key risks as a concise legal memo."'
+  },
+  {
+    title: '2. Stack the context',
+    detail: 'Add tone, decision criteria, glossary items, templates, and counter-examples.'
+  },
+  {
+    title: '3. Request the deliverable',
+    detail: 'Once aligned, ask for the final output. Expect around 40% less manual fixing.'
+  },
 ]
 
 export default function PromptStackingSlide({ onComplete, completedSections }: ContextStackingSlideProps) {
@@ -39,9 +48,9 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Context Stacking · Técnica personal</h1>
+          <h1 className="slide-title">Context Stacking - Personal Technique</h1>
           <p className="slide-subtitle text-primary-600">
-            Enseñamos a la IA cómo pensar antes de pedirle la tarea.
+            We teach the model how to think before we ask it to work.
           </p>
         </motion.div>
 
@@ -54,11 +63,11 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
               <Layers className="w-5 h-5 text-primary-600" />
-              <h2 className="text-lg font-semibold">Idea central</h2>
+              <h2 className="text-lg font-semibold">Core Ideas</h2>
             </div>
             <ul className="space-y-3 text-gray-700 leading-relaxed">
               {PRINCIPLES.map((principle) => (
-                <li key={principle}>• {principle}</li>
+                <li key={principle}>- {principle}</li>
               ))}
             </ul>
           </div>
@@ -69,11 +78,12 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
               <h2 className="text-lg font-semibold">Before vs After</h2>
             </div>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Demo en vivo: mostrar un prompt crudo versus el stacked prompt. El stacked reduce
-              corrección manual en ~40%. La diferencia está en cómo definimos reglas, ejemplos y formato.
+              Run a live demo comparing a cold prompt against the stacked prompt.
+              The stacked version cuts manual cleanup by roughly 40% because the format,
+              tone, and decision filters are already in place.
             </p>
             <div className="rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-primary-800">
-              Clave: la ventana de contexto es un canvas. Todo lo que colocas ahí forma parte del set de instrucciones.
+              Reminder: the context window is a canvas. Every word you add becomes part of the instruction set.
             </div>
           </div>
         </motion.div>
@@ -86,7 +96,7 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
         >
           <div className="flex items-center gap-3 mb-4">
             <ClipboardList className="w-5 h-5 text-primary-600" />
-            <h2 className="text-lg font-semibold">Workflow express</h2>
+            <h2 className="text-lg font-semibold">Express Workflow</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {FLOW_STEPS.map((step) => (
@@ -108,10 +118,10 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Context stacking explicado
+            Context stacking covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marcado como completado.</p>
+            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>
