@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, Target, Users } from 'lucide-react'
+import { Sparkles, Users } from 'lucide-react'
 
 interface WelcomeSlideProps {
   onComplete: (sectionId: string) => void
@@ -20,11 +20,6 @@ const OVERVIEW_ITEMS = [
     title: 'Real Use Cases',
     description: 'Slack, Legal, Finance, and Data Quality with impact metrics.'
   },
-  {
-    icon: <Target className="w-6 h-6 text-primary-600" />,
-    title: 'Actionable Follow-up',
-    description: 'Clear CTA: grab the templates and keep iterating with La Sesh.'
-  },
 ]
 
 export default function WelcomeSlide({ onComplete, completedSections }: WelcomeSlideProps) {
@@ -40,7 +35,7 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           className="text-center"
         >
           <p className="text-sm uppercase tracking-[0.3em] text-primary-500 mb-4">
-            Somos | AI Patterns
+            Somos - Assent
           </p>
           <h1 className="slide-title">
             AI that amplifies human judgment
@@ -58,7 +53,7 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           transition={{ duration: 0.6, delay: 0.15 }}
         >
           <h2 className="section-title text-center mb-10">What We Will Cover</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {OVERVIEW_ITEMS.map((item) => (
               <div key={item.title} className="card h-full">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 mb-4">
