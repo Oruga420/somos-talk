@@ -50,7 +50,7 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
           className="text-center"
         >
           <h1 className="slide-title">Agentic Workflows - Legal, Regulatory, Finance</h1>
-          <p className="slide-subtitle text-primary-600">
+          <p className="slide-subtitle text-accent-500">
             Goal: automate repetitive analytical tasks while preserving full traceability.
           </p>
         </motion.div>
@@ -61,16 +61,16 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
           transition={{ duration: 0.6, delay: 0.15 }}
           className="card"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <GitBranch className="w-5 h-5 text-primary-600" />
-            <h2 className="text-lg font-semibold">Multi-step pipeline</h2>
-          </div>
-          <ul className="space-y-2 text-secondary-100 leading-relaxed">
+            <div className="flex items-center gap-3 mb-4">
+              <GitBranch className="w-5 h-5 text-accent-600" />
+              <h2 className="text-lg font-semibold">Multi-step pipeline</h2>
+            </div>
+          <ul className="space-y-2 text-accent-600 leading-relaxed">
             {PIPELINE.map((step) => (
               <li key={step}>- {step}</li>
             ))}
           </ul>
-          <p className="mt-4 text-sm text-secondary-200 leading-relaxed">
+          <p className="mt-4 text-sm text-accent-600 leading-relaxed">
             Tooling: LangGraph or Airflow to orchestrate, internal APIs as sources, human reviewers as the final gate.
           </p>
         </motion.div>
@@ -83,11 +83,11 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
         >
           {USE_CASES.map((useCase) => (
             <div key={useCase.title} className="card">
-              <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
-                <BookOpen className="w-4 h-4 text-primary-600" />
+              <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-accent-700">
+                <BookOpen className="w-4 h-4 text-secondary-500" />
                 {useCase.title}
               </div>
-              <p className="text-sm text-secondary-200 leading-relaxed">{useCase.detail}</p>
+              <p className="text-sm text-accent-600 leading-relaxed">{useCase.detail}</p>
             </div>
           ))}
         </motion.div>
@@ -98,22 +98,22 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
           transition={{ duration: 0.6, delay: 0.45 }}
           className="grid md:grid-cols-2 gap-6"
         >
-          <div className="card bg-primary-900/50 border border-primary-700/60">
+          <div className="card bg-white border border-primary-200 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
-              <FileText className="w-5 h-5 text-primary-600" />
+              <FileText className="w-5 h-5 text-accent-600" />
               <h3 className="text-lg font-semibold">Example</h3>
             </div>
-            <p className="text-sm text-secondary-200 leading-relaxed">
+            <p className="text-sm text-accent-600 leading-relaxed">
               "Scan these three regulatory PDFs, build a requirement matrix, and highlight critical changes."
               The agent returns a CSV ready for legal review in under five minutes.
             </p>
           </div>
-          <div className="card bg-primary-900/50 border border-primary-700/60">
+          <div className="card bg-white border border-primary-200 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
-              <ShieldCheck className="w-5 h-5 text-primary-600" />
+              <ShieldCheck className="w-5 h-5 text-secondary-500" />
               <h3 className="text-lg font-semibold">Guardrails</h3>
             </div>
-            <ul className="space-y-2 text-sm text-secondary-200 leading-relaxed">
+            <ul className="space-y-2 text-sm text-accent-600 leading-relaxed">
               <li>- Scope limits per agent and centralised logs.</li>
               <li>- Citations for every source in the final output.</li>
               <li>- Mandatory human approval before final decisions.</li>
@@ -129,12 +129,12 @@ export default function AgentsSlide({ onComplete, completedSections }: AgenticSl
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
+            className="px-6 py-3 rounded-lg bg-secondary-500 text-white shadow-lg shadow-secondary-500/30 hover:bg-secondary-400 transition-colors"
           >
             Agentic workflows covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-500 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

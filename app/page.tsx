@@ -94,12 +94,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="fixed top-24 right-6 z-40 flex items-center space-x-4 rounded-full border border-primary-700/60 bg-primary-900/80 px-4 py-2 shadow-lg shadow-primary-900/40 backdrop-blur-lg">
+      <div className="fixed top-24 right-6 z-40 flex items-center space-x-4 rounded-full border border-primary-200 bg-white/90 px-4 py-2 shadow-lg shadow-primary-200/70 backdrop-blur-lg">
         <div className="flex items-center space-x-2">
           <button
             onClick={prevSlide}
             disabled={currentSlide === 0}
-            className="p-2 rounded-lg text-secondary-100 transition-colors hover:bg-primary-800/80 disabled:cursor-not-allowed disabled:opacity-40"
+            className="p-2 rounded-lg text-accent-600 transition-colors hover:bg-primary-100 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -107,13 +107,13 @@ export default function Home() {
           <button
             onClick={nextSlide}
             disabled={currentSlide === slides.length - 1}
-            className="p-2 rounded-lg text-secondary-100 transition-colors hover:bg-primary-800/80 disabled:cursor-not-allowed disabled:opacity-40"
+            className="p-2 rounded-lg text-accent-600 transition-colors hover:bg-primary-100 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="text-sm font-medium text-secondary-200">
+        <div className="text-sm font-medium text-accent-500">
           {currentSlide + 1} / {slides.length}
         </div>
       </div>
@@ -144,10 +144,10 @@ export default function Home() {
               setCurrentSlide(index)
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
-            className={`w-3 h-3 rounded-full border border-primary-800 transition-colors ${
+            className={`w-3 h-3 rounded-full border border-primary-200 transition-colors ${
               index === currentSlide
-                ? 'bg-accent-400 shadow shadow-accent-500/40'
-                : 'bg-primary-800 hover:bg-primary-700'
+                ? 'bg-secondary-500 shadow shadow-secondary-500/40'
+                : 'bg-primary-200 hover:bg-primary-300'
             }`}
           />
         ))}

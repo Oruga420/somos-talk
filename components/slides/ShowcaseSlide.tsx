@@ -12,7 +12,7 @@ interface ShowcaseSlideProps {
 const HIGHLIGHTS = [
   {
     title: 'ElevenLabs',
-    icon: <Mic2 className="w-6 h-6 text-primary-600" />,
+    icon: <Mic2 className="w-6 h-6 text-secondary-600" />,
     description: 'Natural text-to-speech in English and Spanish.',
     bullets: [
       'Perfect for fast demos, training videos, or inclusive content.',
@@ -21,7 +21,7 @@ const HIGHLIGHTS = [
   },
   {
     title: 'HeyGen',
-    icon: <UserSquare className="w-6 h-6 text-primary-600" />,
+    icon: <UserSquare className="w-6 h-6 text-secondary-600" />,
     description: 'Lip-synced video avatars with multilingual support.',
     bullets: [
       'Use text or audio to create a digital presenter.',
@@ -30,7 +30,7 @@ const HIGHLIGHTS = [
   },
   {
     title: 'Google AI Studio (Vibe Code)',
-    icon: <Sparkles className="w-6 h-6 text-primary-600" />,
+    icon: <Sparkles className="w-6 h-6 text-secondary-600" />,
     description: 'Train small models to copy your tone and writing style.',
     bullets: [
       'Example: friendly-but-concise emails for internal comms.',
@@ -39,7 +39,7 @@ const HIGHLIGHTS = [
   },
   {
     title: 'VS Code Plugins (Codex, Copilot, etc.)',
-    icon: <Code2 className="w-6 h-6 text-primary-600" />,
+    icon: <Code2 className="w-6 h-6 text-secondary-600" />,
     description: 'Embedded AI to explain, refactor, or document code.',
     bullets: [
       'Example: "explain this function" -> docstring plus suggested tests.',
@@ -67,7 +67,7 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
           className="text-center"
         >
           <h1 className="slide-title">Showcase - Creative, Useful, Fun</h1>
-          <p className="slide-subtitle text-primary-600">
+          <p className="slide-subtitle text-accent-500">
             Goal: prove that AI is not only automation, it can elevate experiences too.
           </p>
         </motion.div>
@@ -84,10 +84,10 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
                 {item.icon}
                 <div>
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <p className="text-sm text-secondary-200">{item.description}</p>
+                  <p className="text-sm text-accent-600">{item.description}</p>
                 </div>
               </div>
-              <ul className="space-y-2 text-sm text-secondary-100 leading-relaxed">
+              <ul className="space-y-2 text-sm text-accent-600 leading-relaxed">
                 {item.bullets.map((bullet) => (
                   <li key={bullet}>- {bullet}</li>
                 ))}
@@ -104,12 +104,12 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
+            className="px-6 py-3 rounded-lg bg-secondary-500 text-white shadow-lg shadow-secondary-500/30 hover:bg-secondary-400 transition-colors"
           >
             Showcase covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-500 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

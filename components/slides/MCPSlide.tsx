@@ -40,7 +40,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
           className="text-center"
         >
           <h1 className="slide-title">Slack Bot - Live FAQ for Internal Teams</h1>
-          <p className="slide-subtitle text-primary-600">
+          <p className="slide-subtitle text-accent-500">
             Purpose: remove daily friction by wiring Slack to OpenAI through a safe middleware layer.
           </p>
         </motion.div>
@@ -53,29 +53,29 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
         >
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
-              <MessageSquare className="w-5 h-5 text-primary-600" />
+              <MessageSquare className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">What it solves</h2>
             </div>
-            <ul className="space-y-3 text-secondary-100 leading-relaxed">
+            <ul className="space-y-3 text-accent-600 leading-relaxed">
               {BENEFITS.map((benefit) => (
                 <li key={benefit}>- {benefit}</li>
               ))}
             </ul>
-            <div className="mt-4 rounded-lg border border-primary-700/60 bg-primary-900/50 p-4 text-sm text-secondary-200 leading-relaxed">
+            <div className="mt-4 rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-accent-600 leading-relaxed">
               Internal metric: roughly 30% fewer "where is that file?" tickets in high-volume teams.
             </div>
           </div>
 
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
-              <Link2 className="w-5 h-5 text-primary-600" />
+              <Link2 className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">Reference architecture</h2>
             </div>
             <div className="space-y-3">
               {STACK.map((layer) => (
-                <div key={layer.title} className="rounded-lg bg-primary-900/60 border border-primary-700/60 p-4">
-                  <h3 className="text-sm font-semibold text-secondary-50 mb-1">{layer.title}</h3>
-                  <p className="text-sm text-secondary-200 leading-relaxed">{layer.detail}</p>
+                <div key={layer.title} className="rounded-lg bg-white border border-primary-200 p-4 shadow-sm">
+                  <h3 className="text-sm font-semibold text-accent-700 mb-1">{layer.title}</h3>
+                  <p className="text-sm text-accent-600 leading-relaxed">{layer.detail}</p>
                 </div>
               ))}
             </div>
@@ -89,30 +89,30 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
           className="grid md:grid-cols-3 gap-4"
         >
           <div className="card">
-            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
-              <ShieldCheck className="w-4 h-4 text-primary-600" />
+            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-accent-700">
+              <ShieldCheck className="w-4 h-4 text-secondary-500" />
               Guardrails
             </div>
-            <p className="text-sm text-secondary-200 leading-relaxed">
+            <p className="text-sm text-accent-600 leading-relaxed">
               Channel-aware permissions, PII filters, audit trail for prompts and responses.
             </p>
           </div>
           <div className="card">
-            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
-              <BarChart3 className="w-4 h-4 text-primary-600" />
+            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-accent-700">
+              <BarChart3 className="w-4 h-4 text-secondary-500" />
               Measurement
             </div>
-            <p className="text-sm text-secondary-200 leading-relaxed">
+            <p className="text-sm text-accent-600 leading-relaxed">
               Adoption dashboards: resolved questions, hot topics, and time saved per team.
             </p>
           </div>
           <div className="card">
-            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
-              <Bot className="w-4 h-4 text-primary-600" />
+            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-accent-700">
+              <Bot className="w-4 h-4 text-secondary-500" />
               Demo idea
             </div>
-            <p className="text-sm text-secondary-200 leading-relaxed flex items-start gap-2">
-              <PlayCircle className="w-4 h-4 text-accent-400 mt-1 shrink-0" />
+            <p className="text-sm text-accent-600 leading-relaxed flex items-start gap-2">
+              <PlayCircle className="w-4 h-4 text-secondary-500 mt-1 shrink-0" />
               <span>Ask "What is our travel policy?" and "Where is the vendor contract template?" to show contextual accuracy.</span>
             </p>
           </div>
@@ -126,12 +126,12 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
+            className="px-6 py-3 rounded-lg bg-secondary-500 text-white shadow-lg shadow-secondary-500/30 hover:bg-secondary-400 transition-colors"
           >
             Slack bot covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-500 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

@@ -16,7 +16,7 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps = {}) {
 
   const isDark = theme === 'dark'
   const baseClasses =
-    'inline-flex items-center justify-center rounded-full border border-primary-700/60 bg-primary-900/80 p-2 text-secondary-100 shadow-lg shadow-primary-900/40 backdrop-blur transition-colors hover:bg-primary-800/80'
+    'inline-flex items-center justify-center rounded-full border border-primary-200 bg-white/90 p-2 text-accent-600 shadow-lg shadow-primary-200/70 backdrop-blur transition-colors hover:bg-primary-100'
 
   return (
     <button

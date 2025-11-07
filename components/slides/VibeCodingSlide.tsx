@@ -40,7 +40,7 @@ export default function VibeCodingSlide({ onComplete, completedSections }: Custo
           className="text-center"
         >
           <h1 className="slide-title">Custom Tools + Fine-tuned Models</h1>
-          <p className="slide-subtitle text-primary-600">
+          <p className="slide-subtitle text-accent-500">
             When a chatbot is not enough, we ship lightweight UIs or bespoke models that guarantee the outcome.
           </p>
         </motion.div>
@@ -53,25 +53,25 @@ export default function VibeCodingSlide({ onComplete, completedSections }: Custo
         >
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
-              <Hammer className="w-5 h-5 text-primary-600" />
+              <Hammer className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">Custom tools build</h2>
             </div>
-            <ul className="space-y-3 text-secondary-100 leading-relaxed">
+            <ul className="space-y-3 text-accent-600 leading-relaxed">
               {TOOL_HIGHLIGHTS.map((item) => (
                 <li key={item}>- {item}</li>
               ))}
             </ul>
-            <div className="mt-4 rounded-lg border border-primary-700/60 bg-primary-900/50 p-4 text-sm text-secondary-200 leading-relaxed">
+            <div className="mt-4 rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-accent-600 leading-relaxed">
               Outcome: less manual effort, fewer errors, consistent deliverables for downstream analytics.
             </div>
           </div>
 
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
-              <ServerCog className="w-5 h-5 text-primary-600" />
+              <ServerCog className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">Reference architecture</h2>
             </div>
-            <ul className="space-y-2 text-sm text-secondary-200 leading-relaxed">
+            <ul className="space-y-2 text-sm text-accent-600 leading-relaxed">
               <li>- Lightweight front-end for upload and validation.</li>
               <li>- Python services orchestrate cleaning, enrichment, and generation with AI.</li>
               <li>- Native integrations push results into Snowflake or internal APIs.</li>
@@ -87,26 +87,26 @@ export default function VibeCodingSlide({ onComplete, completedSections }: Custo
         >
           <div className="card">
             <div className="flex items-center gap-3 mb-4">
-              <Wrench className="w-5 h-5 text-primary-600" />
+              <Wrench className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">Fine-tuned models</h2>
             </div>
-            <ul className="space-y-3 text-secondary-100 leading-relaxed">
+            <ul className="space-y-3 text-accent-600 leading-relaxed">
               {MODEL_GAINS.map((item) => (
                 <li key={item}>- {item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="card bg-gradient-to-br from-primary-800/50 to-primary-900/60 border border-primary-700/60">
+          <div className="card bg-gradient-to-br from-secondary-50 to-primary-100 border border-primary-100">
             <div className="flex items-center gap-3 mb-4">
-              <Gauge className="w-5 h-5 text-primary-600" />
+              <Gauge className="w-5 h-5 text-accent-600" />
               <h2 className="text-lg font-semibold">Case in production</h2>
             </div>
-            <p className="text-sm text-secondary-100 leading-relaxed">
+            <p className="text-sm text-accent-600 leading-relaxed">
               Input vs output: "500 rows - 30 seconds - clean schema."
               The fine-tuned model normalises supplier part descriptions and returns Snowflake-ready attributes.
             </p>
-            <div className="mt-4 rounded-lg bg-primary-900/40 border border-primary-700/60 p-4 text-sm text-secondary-200 leading-relaxed">
+            <div className="mt-4 rounded-lg bg-white border border-primary-200 p-4 text-sm text-accent-600 leading-relaxed">
               Data Quality reports multiple hours saved each week on manual validation.
             </div>
           </div>
@@ -120,12 +120,12 @@ export default function VibeCodingSlide({ onComplete, completedSections }: Custo
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
+            className="px-6 py-3 rounded-lg bg-secondary-500 text-white shadow-lg shadow-secondary-500/30 hover:bg-secondary-400 transition-colors"
           >
             Custom tools covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-500 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>
