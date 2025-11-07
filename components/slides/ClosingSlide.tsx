@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Share2 } from 'lucide-react'
+import { ArrowRight, Sparkles, Share2, Download } from 'lucide-react'
 
 interface ClosingSlideProps {
   onComplete: (sectionId: string) => void
@@ -90,6 +90,22 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
               Send the deck to the team to keep momentum and conversation alive.
             </p>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="flex justify-center"
+        >
+          <a
+            href="/somos-talk-presentation.pdf"
+            download
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            Descargar presentación (PDF)
+          </a>
         </motion.div>
 
         {isCompleted && (
