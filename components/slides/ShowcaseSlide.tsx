@@ -6,6 +6,8 @@ import { Mic2, UserSquare, Sparkles, Code2 } from 'lucide-react'
 interface ShowcaseSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
+  onDownloadPresentation?: () => void
+  isDownloadingPresentation?: boolean
   completedSections: string[]
 }
 

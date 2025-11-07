@@ -1,15 +1,22 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Share2 } from 'lucide-react'
+import { ArrowRight, Sparkles, Share2, Download, Loader2 } from 'lucide-react'
 
 interface ClosingSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
+  onDownloadPresentation?: () => void
+  isDownloadingPresentation?: boolean
   completedSections: string[]
 }
 
-export default function ClosingSlide({ onComplete, completedSections }: ClosingSlideProps) {
+export default function ClosingSlide({
+  onComplete,
+  onDownloadPresentation,
+  isDownloadingPresentation,
+  completedSections,
+}: ClosingSlideProps) {
   const isCompleted = completedSections.includes('closing')
 
   const handleComplete = () => {
@@ -91,6 +98,33 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
             </p>
           </div>
         </motion.div>
+
+        {onDownloadPresentation && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="flex justify-center"
+          >
+            <button
+              onClick={onDownloadPresentation}
+              disabled={isDownloadingPresentation}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            >
+              {isDownloadingPresentation ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Preparando PDF...
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" />
+                  Descargar presentación (PDF)
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
 
         {isCompleted && (
           <motion.p

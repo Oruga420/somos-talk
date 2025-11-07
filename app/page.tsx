@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -24,9 +24,42 @@ const slides = [
   { id: 'closing', component: ClosingSlide, title: 'Closing' },
 ]
 
+declare global {
+  interface Window {
+    html2canvas?: (
+      element: HTMLElement,
+      options?: { scale?: number; backgroundColor?: string }
+    ) => Promise<HTMLCanvasElement>
+    jspdf?: {
+      jsPDF: new (
+        options?: {
+          orientation?: 'p' | 'portrait' | 'l' | 'landscape'
+          unit?: string
+          format?: string | number[]
+        }
+      ) => {
+        internal: { pageSize: { getWidth: () => number; getHeight: () => number } }
+        addPage: () => void
+        addImage: (
+          imageData: string,
+          format: string,
+          x: number,
+          y: number,
+          width: number,
+          height: number
+        ) => void
+        save: (filename: string) => void
+        getImageProperties: (imageData: string) => { width: number; height: number }
+      }
+    }
+  }
+}
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [completedSections, setCompletedSections] = useState<string[]>([])
+  const [isGeneratingPresentation, setIsGeneratingPresentation] = useState(false)
+  const printableDeckRef = useRef<HTMLDivElement>(null)
 
   const progress = ((currentSlide + 1) / slides.length) * 100
 
@@ -59,6 +92,119 @@ export default function Home() {
     link.click()
     document.body.removeChild(link)
     toast.success(`Descargando ${templateName}...`)
+  }
+
+  const ensurePdfDependencies = async () => {
+    const loadScript = (src: string) =>
+      new Promise<void>((resolve, reject) => {
+        const existingScript = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`)
+        if (existingScript) {
+          if (existingScript.dataset.loaded === 'true') {
+            resolve()
+            return
+          }
+
+          existingScript.addEventListener('load', () => resolve(), { once: true })
+          existingScript.addEventListener('error', () => reject(new Error(`No se pudo cargar ${src}`)), {
+            once: true,
+          })
+          return
+        }
+
+        const script = document.createElement('script')
+        script.src = src
+        script.async = true
+        script.dataset.loaded = 'false'
+        script.onload = () => {
+          script.dataset.loaded = 'true'
+          resolve()
+        }
+        script.onerror = () => reject(new Error(`No se pudo cargar ${src}`))
+        document.body.appendChild(script)
+      })
+
+    if (!window.html2canvas) {
+      await loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js')
+    }
+
+    if (!window.jspdf?.jsPDF) {
+      await loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js')
+    }
+
+    if (!window.html2canvas || !window.jspdf?.jsPDF) {
+      throw new Error('Dependencias para generar PDF no disponibles')
+    }
+  }
+
+  const downloadPresentation = async () => {
+    if (isGeneratingPresentation) {
+      return
+    }
+
+    const container = printableDeckRef.current
+    if (!container) {
+      toast.error('No se pudo preparar la presentación para exportar')
+      return
+    }
+
+    setIsGeneratingPresentation(true)
+    const toastId = toast.loading('Generando presentación en PDF...')
+
+    try {
+      await ensurePdfDependencies()
+
+      const html2canvas = window.html2canvas!
+      const { jsPDF } = window.jspdf!
+
+      if ('fonts' in document && 'ready' in document.fonts) {
+        try {
+          await document.fonts.ready
+        } catch (error) {
+          console.warn('No se pudo confirmar la carga de fuentes antes de exportar', error)
+        }
+      }
+
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
+
+      const slideElements = Array.from(container.querySelectorAll<HTMLElement>('[data-slide-index]'))
+      if (slideElements.length === 0) {
+        throw new Error('No se encontraron diapositivas para exportar')
+      }
+
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' })
+      const pageWidth = pdf.internal.pageSize.getWidth()
+      const pageHeight = pdf.internal.pageSize.getHeight()
+      const margin = 24
+
+      for (let index = 0; index < slideElements.length; index += 1) {
+        const slideElement = slideElements[index]
+        const canvas = await html2canvas(slideElement, {
+          scale: 2,
+          backgroundColor: '#ffffff',
+        })
+
+        const imageData = canvas.toDataURL('image/png')
+        const imageProps = pdf.getImageProperties(imageData)
+
+        const printableWidth = pageWidth - margin * 2
+        const printableHeight = (imageProps.height * printableWidth) / imageProps.width
+        const yOffset = Math.max((pageHeight - printableHeight) / 2, margin)
+
+        if (index > 0) {
+          pdf.addPage()
+        }
+
+        pdf.addImage(imageData, 'PNG', margin, yOffset, printableWidth, printableHeight)
+      }
+
+      pdf.save('somos-talk-presentation.pdf')
+      toast.success('Presentación exportada correctamente', { id: toastId })
+    } catch (error) {
+      console.error(error)
+      toast.error('No se pudo generar el PDF de la presentación', { id: toastId })
+    } finally {
+      setIsGeneratingPresentation(false)
+    }
   }
 
   const CurrentSlideComponent = slides[currentSlide].component
@@ -130,7 +276,9 @@ export default function Home() {
             <CurrentSlideComponent
               onComplete={markSectionComplete}
               onDownload={downloadTemplate}
+              onDownloadPresentation={downloadPresentation}
               completedSections={completedSections}
+              isDownloadingPresentation={isGeneratingPresentation}
             />
           </motion.div>
         </AnimatePresence>
@@ -154,6 +302,30 @@ export default function Home() {
       </div>
 
       <ScheduleBar currentSlideIndex={currentSlide} />
+
+      <div
+        ref={printableDeckRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[12000px] top-0 w-[1024px] space-y-6 bg-white"
+      >
+        {slides.map((slide, index) => {
+          const SlideComponent = slide.component
+          return (
+            <div
+              key={slide.id}
+              data-slide-index={index}
+              className="min-h-[576px] w-full rounded-xl border border-slate-200 bg-white p-10 shadow-sm"
+            >
+              <SlideComponent
+                onComplete={() => {}}
+                onDownload={() => {}}
+                completedSections={[]}
+                isDownloadingPresentation={false}
+              />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

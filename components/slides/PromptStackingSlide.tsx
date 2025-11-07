@@ -6,6 +6,8 @@ import { Layers, ClipboardList, Sparkles } from 'lucide-react'
 interface ContextStackingSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
+  onDownloadPresentation?: () => void
+  isDownloadingPresentation?: boolean
   completedSections: string[]
 }
 
