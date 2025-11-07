@@ -18,7 +18,7 @@ const TOOL_HIGHLIGHTS = [
 const MODEL_GAINS = [
   'Fine-tuned model (OpenAI or Bedrock) trained on labelled internal data.',
   'Understands our technical vocabulary and inconsistent part descriptions.',
-  'Delivers ~25% higher accuracy versus zero-shot GPT and saves manual QA hours.',
+  'Delivers ~25% higher accuracy versus zero-shot GPT (licensed/enterprise builds—freemium tiers exist for quick trials) and saves manual QA hours.',
 ]
 
 export default function VibeCodingSlide({ onComplete, completedSections }: CustomToolsSlideProps) {

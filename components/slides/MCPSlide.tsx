@@ -10,14 +10,18 @@ interface SlackBotSlideProps {
 }
 
 const BENEFITS = [
-  'Answers policy, document, and process questions without leaving Slack.',
-  'Understands channel context and respects roles and permissions.',
-  'Cuts repetitive questions for HR, Legal, and Compliance teams.',
+  'Answers policy, document, and process questions directly inside Slack, Teams, WhatsApp, or Discord.',
+  'Understands channel context, emojis, and permissions so responses stay human and on-brand.',
+  'Cuts repetitive questions for HR, Legal, Compliance, and ops crews—less “where is…?” noise.',
 ]
 
 const STACK = [
   { title: 'Middleware', detail: 'LangChain with Python (FastAPI) orchestrates prompts, memory, and routing.' },
-  { title: 'Connectors', detail: 'Slack Events API, OpenAI API, and internal repositories like SharePoint or Confluence.' },
+  {
+    title: 'Connectors',
+    detail:
+      'Slack & Teams bot APIs, WhatsApp Business, Discord webhooks, plus licensed OpenAI/Gemini endpoints (these paid tiers also ship freemium options).',
+  },
   { title: 'Control', detail: 'Request limits, logging, and human escalation when confidence drops below threshold.' },
 ]
 
@@ -39,9 +43,9 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Slack Bot - Live FAQ for Internal Teams</h1>
+          <h1 className="slide-title">Comms Bot - Slack · Teams · WhatsApp · Discord</h1>
           <p className="slide-subtitle text-accent-500">
-            Purpose: remove daily friction by wiring Slack to OpenAI through a safe middleware layer.
+            Purpose: remove daily friction by wiring chat platforms to licensed AI backends (with freemium moats if you need to prototype).
           </p>
         </motion.div>
 
@@ -62,7 +66,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               ))}
             </ul>
             <div className="mt-4 rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-accent-600 leading-relaxed">
-              Internal metric: roughly 30% fewer "where is that file?" tickets in high-volume teams.
+              Internal metric: roughly 30% fewer "where is that file?" tickets in mixed chat environments.
             </div>
           </div>
 
@@ -94,7 +98,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               Guardrails
             </div>
             <p className="text-sm text-accent-600 leading-relaxed">
-              Channel-aware permissions, PII filters, audit trail for prompts and responses.
+              Channel-aware permissions, PII filters, audit trail for prompts and responses—even when the bot hops between Slack, Teams, WhatsApp, or Discord.
             </p>
           </div>
           <div className="card">
@@ -103,7 +107,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               Measurement
             </div>
             <p className="text-sm text-accent-600 leading-relaxed">
-              Adoption dashboards: resolved questions, hot topics, and time saved per team.
+              Adoption dashboards: resolved questions, hot topics, GIF usage, and time saved per team.
             </p>
           </div>
           <div className="card">

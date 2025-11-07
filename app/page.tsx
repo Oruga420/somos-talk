@@ -17,7 +17,7 @@ import ScheduleBar from '@/components/ScheduleBar'
 const slides = [
   { id: 'welcome', component: WelcomeSlide, title: 'Somos: Opening' },
   { id: 'context-stacking', component: PromptStackingSlide, title: 'Context Stacking' },
-  { id: 'slack-bot', component: MCPSlide, title: 'Slack Bot' },
+  { id: 'slack-bot', component: MCPSlide, title: 'Comms Bot' },
   { id: 'agentic-workflows', component: AgentsSlide, title: 'Agentic Workflows' },
   { id: 'custom-tools', component: VibeCodingSlide, title: 'Custom Tools & Fine-tuning' },
   { id: 'showcase', component: ShowcaseSlide, title: 'Showcase' },

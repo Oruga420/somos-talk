@@ -27,7 +27,7 @@ export const presentationSections: PresentationSection[] = [
       },
       {
         title: 'Real Use Cases',
-        items: ['Slack, Legal, Finance, and Data Quality with impact metrics.'],
+        items: ['Slack (and Teams, WhatsApp, Discord), Legal, Finance, and Data Quality with impact metrics.'],
       },
     ],
     tags: ['Calibrate fast', 'Operate with guardrails', 'Share real playbooks'],
@@ -62,31 +62,32 @@ export const presentationSections: PresentationSection[] = [
     ],
   },
   {
-    title: 'Slack Bot - Live FAQ for Internal Teams',
-    subtitle: 'Purpose: remove daily friction by wiring Slack to OpenAI through a safe middleware layer.',
+    title: 'Comms Bot - Slack · Teams · WhatsApp · Discord',
+    subtitle:
+      'Purpose: remove daily friction by wiring chat platforms to licensed AI backends (with freemium moats if you need to prototype).',
     bulletGroups: [
       {
         title: 'What it solves',
         items: [
-          'Answers policy, document, and process questions without leaving Slack.',
-          'Understands channel context and respects roles and permissions.',
-          'Cuts repetitive questions for HR, Legal, and Compliance teams.',
-          'Internal metric: roughly 30% fewer "where is that file?" tickets in high-volume teams.',
+          'Answers policy, document, and process questions directly inside Slack, Teams, WhatsApp, or Discord.',
+          'Understands channel context, emojis, and permissions so responses stay human and on-brand.',
+          'Cuts repetitive questions for HR, Legal, Compliance, and ops crews—less “where is…?” noise.',
+          'Internal metric: roughly 30% fewer "where is that file?" tickets in mixed chat environments.',
         ],
       },
       {
         title: 'Reference architecture',
         items: [
           'Middleware — LangChain with Python (FastAPI) orchestrates prompts, memory, and routing.',
-          'Connectors — Slack Events API, OpenAI API, and internal repositories like SharePoint or Confluence.',
+          'Connectors — Slack & Teams bot APIs, WhatsApp Business, Discord webhooks, plus licensed OpenAI/Gemini endpoints (these paid tiers also ship freemium options).',
           'Control — Request limits, logging, and human escalation when confidence drops below threshold.',
         ],
       },
       {
         title: 'Operations',
         items: [
-          'Guardrails — Channel-aware permissions, PII filters, audit trail for prompts and responses.',
-          'Measurement — Adoption dashboards: resolved questions, hot topics, and time saved per team.',
+          'Guardrails — Channel-aware permissions, PII filters, audit trail for prompts and responses—even when the bot hops between Slack, Teams, WhatsApp, or Discord.',
+          'Measurement — Adoption dashboards: resolved questions, hot topics, GIF usage, and time saved per team.',
           'Demo idea — Ask "What is our travel policy?" and "Where is the vendor contract template?" to show contextual accuracy.',
         ],
       },
@@ -151,7 +152,7 @@ export const presentationSections: PresentationSection[] = [
         items: [
           'Fine-tuned model (OpenAI or Bedrock) trained on labelled internal data.',
           'Understands our technical vocabulary and inconsistent part descriptions.',
-          'Delivers ~25% higher accuracy versus zero-shot GPT and saves manual QA hours.',
+          'Delivers ~25% higher accuracy versus zero-shot GPT (licensed/enterprise builds—freemium tiers exist for quick trials) and saves manual QA hours.',
           'Case in production: "500 rows - 30 seconds - clean schema." The model normalises supplier part descriptions and returns Snowflake-ready attributes. Data Quality reports multiple hours saved each week on manual validation.',
         ],
       },

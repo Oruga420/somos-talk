@@ -10,7 +10,7 @@ interface ScheduleBarProps {
 const SLOTS = [
   { time: '00:00 - 00:03', title: 'Somos Welcome', key: 'welcome' },
   { time: '00:03 - 00:13', title: 'Context Stacking', key: 'context-stacking' },
-  { time: '00:13 - 00:18', title: 'Slack Bot', key: 'slack-bot' },
+  { time: '00:13 - 00:18', title: 'Comms Bot', key: 'slack-bot' },
   { time: '00:18 - 00:25', title: 'Agentic Workflows', key: 'agentic-workflows' },
   { time: '00:25 - 00:32', title: 'Custom Tools & Fine-tuning', key: 'custom-tools' },
   { time: '00:32 - 00:35', title: 'Showcase', key: 'showcase' },
