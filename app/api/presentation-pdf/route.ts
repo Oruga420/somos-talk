@@ -1,51 +1,10 @@
 import { NextResponse } from 'next/server'
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
+import { presentationSections } from '@/lib/presentationContent'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
-
-const SECTIONS: Array<{ title: string; bullets: string[] }> = [
-  {
-    title: 'Context Stacking',
-    bullets: [
-      'Design deliberate context before asking for output.',
-      'Stack role, objective, tone, rules, and snippets to reduce noise.',
-      'Result: ~40% less manual correction when compared to cold prompts.',
-    ],
-  },
-  {
-    title: 'Slack Bot',
-    bullets: [
-      'Connects Slack to OpenAI with guardrails and channel awareness.',
-      'Answers policy and process questions without leaving chat.',
-      'Internal teams report ~30% fewer “where is…?” tickets.',
-    ],
-  },
-  {
-    title: 'Agentic Workflows',
-    bullets: [
-      'Automate multi-step legal, regulatory, and finance reviews.',
-      'Search, summarise, analyse, and deliver with traceability.',
-      'Keep human approvals in the loop with logged evidence.',
-    ],
-  },
-  {
-    title: 'Custom Tools & Fine-tuned Models',
-    bullets: [
-      'Lightweight UIs for uploads and validation.',
-      'Fine-tuned models that speak Assent’s technical language.',
-      'Outputs land directly in Snowflake-ready formats.',
-    ],
-  },
-  {
-    title: 'Creative Showcase',
-    bullets: [
-      'ElevenLabs, HeyGen, Google AI Studio (Vibe Code), VS Code assistants.',
-      'AI elevates demos, comms, and onboarding—beyond automation.',
-    ],
-  },
-]
 
 export async function GET() {
   const pdfDoc = await PDFDocument.create()
@@ -59,21 +18,25 @@ export async function GET() {
   let page = pdfDoc.addPage([pageWidth, pageHeight])
   let y = pageHeight - pageMargin
 
-  const drawText = (text: string, options: { font: any; size: number; color: ReturnType<typeof rgb>; lineHeight?: number }) => {
-    const { font, size, color, lineHeight = size * 1.4 } = options
+  const drawText = (
+    text: string,
+    options: { font: any; size: number; color: ReturnType<typeof rgb>; lineHeight?: number; indent?: number }
+  ) => {
+    const { font, size, color, lineHeight = size * 1.4, indent = 0 } = options
     const words = text.split(' ')
     let line = ''
+    const maxWidth = pageWidth - pageMargin * 2 - indent
 
     while (words.length > 0) {
       const testLine = `${line}${words[0]} `
       const testWidth = font.widthOfTextAtSize(testLine, size)
 
-      if (testWidth > pageWidth - pageMargin * 2) {
+      if (testWidth > maxWidth) {
         if (y - lineHeight < pageMargin) {
           page = pdfDoc.addPage([pageWidth, pageHeight])
           y = pageHeight - pageMargin
         }
-        page.drawText(line.trimEnd(), { x: pageMargin, y, size, font, color })
+        page.drawText(line.trimEnd(), { x: pageMargin + indent, y, size, font, color })
         y -= lineHeight
         line = ''
       } else {
@@ -87,7 +50,7 @@ export async function GET() {
         page = pdfDoc.addPage([pageWidth, pageHeight])
         y = pageHeight - pageMargin
       }
-      page.drawText(line.trimEnd(), { x: pageMargin, y, size, font, color })
+      page.drawText(line.trimEnd(), { x: pageMargin + indent, y, size, font, color })
       y -= lineHeight
     }
   }
@@ -132,7 +95,7 @@ export async function GET() {
 
   y -= 12
 
-  SECTIONS.forEach((section) => {
+  presentationSections.forEach((section) => {
     if (y - 24 < pageMargin) {
       page = pdfDoc.addPage([pageWidth, pageHeight])
       y = pageHeight - pageMargin
@@ -148,48 +111,39 @@ export async function GET() {
 
     y -= 22
 
-    section.bullets.forEach((bullet) => {
-      const bulletText = `• ${bullet}`
-      const words = bulletText.split(' ')
-      let line = ''
-      const size = 12
-      const lineHeight = size * 1.4
+    if (section.subtitle) {
+      drawText(section.subtitle, { font: bodyFont, size: 13, color: rgb(0.12, 0.35, 0.44) })
+    }
 
-      while (words.length > 0) {
-        const testLine = `${line}${words[0]} `
-        const testWidth = bodyFont.widthOfTextAtSize(testLine, size)
-
-        if (testWidth > pageWidth - pageMargin * 2) {
-          if (y - lineHeight < pageMargin) {
-            page = pdfDoc.addPage([pageWidth, pageHeight])
-            y = pageHeight - pageMargin
-          }
-          page.drawText(line.trimEnd(), { x: pageMargin + 12, y, size, font: bodyFont, color: rgb(0.12, 0.35, 0.44) })
-          y -= lineHeight
-          line = ''
-        } else {
-          line = testLine
-          words.shift()
-        }
-      }
-
-      if (line.trim().length > 0) {
-        if (y - lineHeight < pageMargin) {
-          page = pdfDoc.addPage([pageWidth, pageHeight])
-          y = pageHeight - pageMargin
-        }
-        page.drawText(line.trimEnd(), { x: pageMargin + 12, y, size, font: bodyFont, color: rgb(0.12, 0.35, 0.44) })
-        y -= lineHeight
-      }
+    section.paragraphs?.forEach((paragraph) => {
+      drawText(paragraph, { font: bodyFont, size: 12, color: rgb(0.12, 0.35, 0.44) })
+      y -= 6
     })
 
-    y -= 14
-  })
+    section.bulletGroups?.forEach((group) => {
+      if (group.title) {
+        drawText(group.title, { font: bodyFont, size: 13, color: rgb(0.05, 0.19, 0.29) })
+        y -= 2
+      }
+      group.items.forEach((item) => {
+        drawText(`• ${item}`, { font: bodyFont, size: 12, color: rgb(0.12, 0.35, 0.44), indent: 14 })
+      })
+      y -= 8
+    })
 
-  drawText('Join La Sesh to keep iterating with live workflows, templates, and community feedback.', {
-    font: bodyFont,
-    size: 12,
-    color: rgb(0.07, 0.76, 0.69),
+    if (section.tags && section.tags.length > 0) {
+      drawText(`Tags: ${section.tags.join(', ')}`, {
+        font: bodyFont,
+        size: 12,
+        color: rgb(0.07, 0.76, 0.69),
+      })
+    }
+
+    if (section.cta) {
+      drawText(section.cta, { font: bodyFont, size: 12, color: rgb(0.07, 0.76, 0.69) })
+    }
+
+    y -= 6
   })
 
   const pdfBytes = await pdfDoc.save()

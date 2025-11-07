@@ -35,17 +35,25 @@ export default function RootLayout({
                 href="/"
                 className="group flex items-center gap-4 rounded-full border border-primary-200 bg-white/90 px-6 py-3 shadow-lg shadow-primary-200/70 backdrop-blur-lg transition-colors hover:border-secondary-400/60 hover:bg-white"
               >
-                <Image
-                  src="/assent-logo.svg"
-                  alt="Assent logo"
-                  width={130}
-                  height={34}
-                  priority
-                  className="h-8 w-auto"
-                />
-                <span className="text-xs uppercase tracking-[0.45em] text-accent-500 transition-colors group-hover:text-secondary-500">
-                  Somos - Assent
-                </span>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/assent-logo.svg"
+                    alt="Assent logo"
+                    width={120}
+                    height={32}
+                    priority
+                    className="h-8 w-auto"
+                  />
+                  <span className="text-xs uppercase tracking-[0.35em] text-accent-200">•</span>
+                  <Image
+                    src="/somos-logo.png"
+                    alt="Somos logo"
+                    width={120}
+                    height={32}
+                    priority
+                    className="h-8 w-auto"
+                  />
+                </div>
               </Link>
               <ThemeToggle className="border-primary-200 bg-white/90 text-accent-600 shadow-primary-200/70 hover:bg-primary-100" />
             </header>
