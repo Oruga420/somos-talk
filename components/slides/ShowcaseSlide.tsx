@@ -3,52 +3,23 @@
 import { motion } from 'framer-motion'
 import { Mic2, UserSquare, Sparkles, Code2 } from 'lucide-react'
 
+import { slideContent } from '@/lib/presentationContent'
+
 interface ShowcaseSlideProps {
   onComplete: (sectionId: string) => void
   completedSections: string[]
 }
 
-const HIGHLIGHTS = [
-  {
-    title: 'ElevenLabs',
-    icon: <Mic2 className="w-6 h-6 text-primary-600" />,
-    description: 'Natural text-to-speech in English and Spanish.',
-    bullets: [
-      'Perfect for fast demos, training videos, or inclusive content.',
-      'Demo idea: generate your voice reading a technical line.'
-    ],
-  },
-  {
-    title: 'HeyGen',
-    icon: <UserSquare className="w-6 h-6 text-primary-600" />,
-    description: 'Lip-synced video avatars with multilingual support.',
-    bullets: [
-      'Use text or audio to create a digital presenter.',
-      'Demo idea: same script rendered in English and Spanish for onboarding.'
-    ],
-  },
-  {
-    title: 'Google AI Studio (Vibe Code)',
-    icon: <Sparkles className="w-6 h-6 text-primary-600" />,
-    description: 'Train small models to copy your tone and writing style.',
-    bullets: [
-      'Example: friendly-but-concise emails for internal comms.',
-      'Demo idea: compare neutral output vs. your vibe-coded version.'
-    ],
-  },
-  {
-    title: 'VS Code Plugins (Codex, Copilot, etc.)',
-    icon: <Code2 className="w-6 h-6 text-primary-600" />,
-    description: 'Embedded AI to explain, refactor, or document code.',
-    bullets: [
-      'Example: "explain this function" -> docstring plus suggested tests.',
-      'Helps new engineers ramp up without slowing the team down.'
-    ],
-  },
-]
+const highlightIcons: Record<string, JSX.Element> = {
+  elevenlabs: <Mic2 className="w-6 h-6 text-primary-600" />,
+  heygen: <UserSquare className="w-6 h-6 text-primary-600" />,
+  'vibe-code': <Sparkles className="w-6 h-6 text-primary-600" />,
+  'vs-code': <Code2 className="w-6 h-6 text-primary-600" />,
+}
 
 export default function ShowcaseSlide({ onComplete, completedSections }: ShowcaseSlideProps) {
   const isCompleted = completedSections.includes('showcase')
+  const content = slideContent.showcase
 
   const handleComplete = () => {
     if (!isCompleted) {
@@ -65,10 +36,8 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Showcase - Creative, Useful, Fun</h1>
-          <p className="slide-subtitle text-primary-600">
-            Goal: prove that AI is not only automation, it can elevate experiences too.
-          </p>
+          <h1 className="slide-title">{content.title}</h1>
+          <p className="slide-subtitle text-primary-600">{content.subtitle}</p>
         </motion.div>
 
         <motion.div
@@ -77,10 +46,10 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
           transition={{ duration: 0.6, delay: 0.15 }}
           className="grid md:grid-cols-2 gap-6"
         >
-          {HIGHLIGHTS.map((item) => (
-            <div key={item.title} className="card h-full">
+          {content.highlights.map((item) => (
+            <div key={item.id} className="card h-full">
               <div className="flex items-center gap-3 mb-3">
-                {item.icon}
+                {highlightIcons[item.id] ?? <Sparkles className="w-6 h-6 text-primary-600" />}
                 <div>
                   <h2 className="text-lg font-semibold">{item.title}</h2>
                   <p className="text-sm text-slate-600">{item.description}</p>
@@ -105,11 +74,9 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Showcase covered
+            {content.completionLabel}
           </button>
-          {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
-          )}
+          {isCompleted && <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>}
         </motion.div>
       </div>
     </div>

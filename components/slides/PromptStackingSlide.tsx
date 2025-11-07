@@ -3,34 +3,16 @@
 import { motion } from 'framer-motion'
 import { Layers, ClipboardList, Sparkles } from 'lucide-react'
 
+import { slideContent } from '@/lib/presentationContent'
+
 interface ContextStackingSlideProps {
   onComplete: (sectionId: string) => void
   completedSections: string[]
 }
 
-const PRINCIPLES = [
-  'This is not prompt magic; it is deliberate context design.',
-  'We stack what the model must know: role, objective, tone, rules, and snippets.',
-  'Every layer removes noise and pulls the model into our domain.',
-]
-
-const FLOW_STEPS = [
-  {
-    title: '1. Define role and outcome',
-    detail: 'Example: "You are a compliance analyst. Summarize the key risks as a concise legal memo."'
-  },
-  {
-    title: '2. Stack the context',
-    detail: 'Add tone, decision criteria, glossary items, templates, and counter-examples.'
-  },
-  {
-    title: '3. Request the deliverable',
-    detail: 'Once aligned, ask for the final output. Expect around 40% less manual fixing.'
-  },
-]
-
 export default function PromptStackingSlide({ onComplete, completedSections }: ContextStackingSlideProps) {
   const isCompleted = completedSections.includes('context-stacking')
+  const content = slideContent.contextStacking
 
   const handleComplete = () => {
     if (!isCompleted) {
@@ -47,10 +29,8 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="slide-title">Context Stacking - Personal Technique</h1>
-          <p className="slide-subtitle text-primary-600">
-            We teach the model how to think before we ask it to work.
-          </p>
+          <h1 className="slide-title">{content.title}</h1>
+          <p className="slide-subtitle text-primary-600">{content.subtitle}</p>
         </motion.div>
 
         <motion.div
@@ -65,7 +45,7 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
               <h2 className="text-lg font-semibold">Core Ideas</h2>
             </div>
             <ul className="space-y-3 text-gray-700 leading-relaxed">
-              {PRINCIPLES.map((principle) => (
+              {content.principles.map((principle) => (
                 <li key={principle}>- {principle}</li>
               ))}
             </ul>
@@ -76,13 +56,9 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
               <Sparkles className="w-5 h-5 text-primary-600" />
               <h2 className="text-lg font-semibold">Before vs After</h2>
             </div>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Run a live demo comparing a cold prompt against the stacked prompt.
-              The stacked version cuts manual cleanup by roughly 40% because the format,
-              tone, and decision filters are already in place.
-            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">{content.beforeAfter.description}</p>
             <div className="rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-primary-800">
-              Reminder: the context window is a canvas. Every word you add becomes part of the instruction set.
+              {content.beforeAfter.reminder}
             </div>
           </div>
         </motion.div>
@@ -98,7 +74,7 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
             <h2 className="text-lg font-semibold">Express Workflow</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
-            {FLOW_STEPS.map((step) => (
+            {content.workflow.map((step) => (
               <div key={step.title} className="rounded-lg bg-slate-50 border border-slate-200 p-4">
                 <h3 className="text-sm font-semibold text-slate-800 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{step.detail}</p>
@@ -117,11 +93,9 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
             onClick={handleComplete}
             className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
           >
-            Context stacking covered
+            {content.completionLabel}
           </button>
-          {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
-          )}
+          {isCompleted && <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>}
         </motion.div>
       </div>
     </div>
