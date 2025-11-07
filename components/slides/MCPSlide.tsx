@@ -5,7 +5,6 @@ import { MessageSquare, Link2, ShieldCheck, BarChart3, Bot, PlayCircle } from 'l
 
 interface SlackBotSlideProps {
   onComplete: (sectionId: string) => void
-  onDownload: (templateName: string) => void
   completedSections: string[]
 }
 

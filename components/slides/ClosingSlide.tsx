@@ -1,20 +1,49 @@
 'use client'
 
+import { useState } from 'react'
+
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Share2 } from 'lucide-react'
+import { ArrowRight, Sparkles, Share2, Download, Loader2 } from 'lucide-react'
+import toast from 'react-hot-toast'
 
 interface ClosingSlideProps {
   onComplete: (sectionId: string) => void
-  onDownload: (templateName: string) => void
   completedSections: string[]
 }
 
 export default function ClosingSlide({ onComplete, completedSections }: ClosingSlideProps) {
+  const [isDownloading, setIsDownloading] = useState(false)
   const isCompleted = completedSections.includes('closing')
 
   const handleComplete = () => {
     if (!isCompleted) {
       onComplete('closing')
+    }
+  }
+
+  const handleDownload = async () => {
+    try {
+      setIsDownloading(true)
+      const response = await fetch('/api/presentation')
+
+      if (!response.ok) {
+        throw new Error('Failed to generate presentation PDF')
+      }
+
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'somos-talk-presentation.pdf'
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.URL.revokeObjectURL(url)
+      toast.success('Presentación descargada')
+    } catch (error) {
+      toast.error('No se pudo generar el PDF. Intenta nuevamente.')
+    } finally {
+      setIsDownloading(false)
     }
   }
 
@@ -90,6 +119,27 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
               Send the deck to the team to keep momentum and conversation alive.
             </p>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="flex justify-center"
+        >
+          <button
+            type="button"
+            onClick={handleDownload}
+            disabled={isDownloading}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-600 text-white shadow transition-colors disabled:cursor-not-allowed disabled:opacity-75 hover:bg-primary-700"
+          >
+            {isDownloading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Download className="w-4 h-4" />
+            )}
+            {isDownloading ? 'Generando PDF...' : 'Descargar presentación (PDF)'}
+          </button>
         </motion.div>
 
         {isCompleted && (

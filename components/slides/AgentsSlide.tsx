@@ -5,7 +5,6 @@ import { GitBranch, FileText, ShieldCheck, BookOpen } from 'lucide-react'
 
 interface AgenticSlideProps {
   onComplete: (sectionId: string) => void
-  onDownload: (templateName: string) => void
   completedSections: string[]
 }
 

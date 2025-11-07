@@ -5,7 +5,6 @@ import { Sparkles, Users } from 'lucide-react'
 
 interface WelcomeSlideProps {
   onComplete: (sectionId: string) => void
-  onDownload: (templateName: string) => void
   completedSections: string[]
 }
 

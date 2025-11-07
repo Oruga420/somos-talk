@@ -51,16 +51,6 @@ export default function Home() {
     }
   }
 
-  const downloadTemplate = (templateName: string) => {
-    const link = document.createElement('a')
-    link.href = `/api/download?template=${templateName}`
-    link.download = `${templateName}.md`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    toast.success(`Descargando ${templateName}...`)
-  }
-
   const CurrentSlideComponent = slides[currentSlide].component
 
   useEffect(() => {
@@ -129,7 +119,6 @@ export default function Home() {
           >
             <CurrentSlideComponent
               onComplete={markSectionComplete}
-              onDownload={downloadTemplate}
               completedSections={completedSections}
             />
           </motion.div>
