@@ -99,12 +99,11 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
           className="flex justify-center"
         >
           <a
-            href="/somos-talk-presentation.pdf"
-            download
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+            href="/api/presentation-pdf"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-secondary-500 text-white shadow-lg shadow-secondary-500/30 hover:bg-secondary-400 transition-colors"
           >
             <Download className="w-4 h-4" />
-            Descargar presentación (PDF)
+            Download presentation (PDF)
           </a>
         </motion.div>
 
