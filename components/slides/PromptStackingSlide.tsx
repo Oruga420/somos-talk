@@ -65,7 +65,7 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
               <Layers className="w-5 h-5 text-primary-600" />
               <h2 className="text-lg font-semibold">Core Ideas</h2>
             </div>
-            <ul className="space-y-3 text-gray-700 leading-relaxed">
+            <ul className="space-y-3 text-secondary-100 leading-relaxed">
               {PRINCIPLES.map((principle) => (
                 <li key={principle}>- {principle}</li>
               ))}
@@ -77,12 +77,12 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
               <Sparkles className="w-5 h-5 text-primary-600" />
               <h2 className="text-lg font-semibold">Before vs After</h2>
             </div>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <p className="text-secondary-200 leading-relaxed mb-4">
               Run a live demo comparing a cold prompt against the stacked prompt.
               The stacked version cuts manual cleanup by roughly 40% because the format,
               tone, and decision filters are already in place.
             </p>
-            <div className="rounded-lg border border-primary-200 bg-primary-50 p-4 text-sm text-primary-800">
+            <div className="rounded-lg border border-primary-700/60 bg-primary-900/50 p-4 text-sm text-secondary-100">
               Reminder: the context window is a canvas. Every word you add becomes part of the instruction set.
             </div>
           </div>
@@ -100,9 +100,9 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {FLOW_STEPS.map((step) => (
-              <div key={step.title} className="rounded-lg bg-slate-50 border border-slate-200 p-4">
-                <h3 className="text-sm font-semibold text-slate-800 mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{step.detail}</p>
+              <div key={step.title} className="rounded-lg bg-primary-900/60 border border-primary-700/60 p-4">
+                <h3 className="text-sm font-semibold text-secondary-50 mb-2">{step.title}</h3>
+                <p className="text-sm text-secondary-200 leading-relaxed">{step.detail}</p>
               </div>
             ))}
           </div>
@@ -116,12 +116,12 @@ export default function PromptStackingSlide({ onComplete, completedSections }: C
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
           >
             Context stacking covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

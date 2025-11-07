@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Work Sans', system-ui, sans-serif;
   }
   
   body {
-    @apply bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen text-gray-900 transition-colors duration-300 dark:from-slate-950 dark:to-slate-900 dark:text-gray-100;
+    @apply bg-gradient-to-br from-primary-900 via-[#0b1b26] to-primary-800 min-h-screen text-secondary-100 transition-colors duration-300 dark:from-primary-900 dark:via-[#070f15] dark:to-[#04080c] dark:text-secondary-50;
   }
 }
 
@@ -23,39 +23,39 @@
   }
   
   .slide-title {
-    @apply text-5xl md:text-6xl font-bold text-gray-900 mb-6 text-center dark:text-gray-100;
+    @apply text-5xl md:text-6xl font-semibold text-secondary-50 mb-6 text-center tracking-tight;
   }
   
   .slide-subtitle {
-    @apply text-2xl md:text-3xl text-gray-600 mb-8 text-center dark:text-gray-300;
+    @apply text-2xl md:text-3xl text-secondary-200 mb-8 text-center;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900 mb-6 dark:text-gray-100;
+    @apply text-3xl md:text-4xl font-semibold text-secondary-50 mb-6;
   }
   
   .card {
-    @apply bg-white rounded-2xl shadow-xl p-8 border border-gray-100 dark:bg-slate-900/80 dark:border-slate-700 dark:shadow-lg dark:text-gray-100;
+    @apply bg-[#0f1e2b]/80 rounded-2xl shadow-xl p-8 border border-primary-800/60 backdrop-blur-sm text-secondary-100;
   }
   
   .exercise-card {
-    @apply bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200 dark:from-slate-900 dark:to-slate-800 dark:border-slate-700;
+    @apply bg-gradient-to-br from-primary-700/40 to-primary-600/40 rounded-xl p-6 border border-primary-600/30;
   }
   
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 dark:bg-primary-500 dark:hover:bg-primary-400;
+    @apply bg-accent-500 hover:bg-accent-400 text-primary-900 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg shadow-accent-500/40;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-gray-100;
+    @apply bg-primary-800 hover:bg-primary-700 text-secondary-50 font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
   
   .progress-bar {
-    @apply w-full bg-gray-200 rounded-full h-2 dark:bg-slate-700;
+    @apply w-full bg-primary-800/60 rounded-full h-2;
   }
   
   .progress-fill {
-    @apply bg-primary-600 h-2 rounded-full transition-all duration-500 dark:bg-primary-400;
+    @apply bg-accent-400 h-2 rounded-full transition-all duration-500;
   }
 }
 
@@ -65,15 +65,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-slate-800;
+  @apply bg-primary-900;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 rounded-full dark:bg-slate-600;
+  @apply bg-primary-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500 dark:bg-slate-500;
+  @apply bg-accent-500;
 }
 
 /* Animation classes */
@@ -90,9 +90,9 @@
 }
 
 @layer base {
-  .dark .text-gray-900 { color: #e2e8f0; }
-  .dark .text-gray-800 { color: #e2e8f0; }
-  .dark .text-gray-700 { color: #cbd5f5; }
+  .dark .text-gray-900 { color: #c7d2dc; }
+  .dark .text-gray-800 { color: #c7d2dc; }
+  .dark .text-gray-700 { color: #aabac7; }
   .dark .text-gray-600 { color: #94a3b8; }
-  .dark .text-gray-500 { color: #818cf8; }
+  .dark .text-gray-500 { color: #7a97ab; }
 }

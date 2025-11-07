@@ -28,7 +28,7 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
           className="text-center"
         >
           <h1 className="slide-title">Closing - Scale Your Judgment with AI</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-6 leading-relaxed">
+          <p className="text-xl text-secondary-200 max-w-3xl mx-auto mt-6 leading-relaxed">
             AI does not replace human judgment; it scales it.
             Structure the context, automate the repetitive work, and protect time for thinking.
           </p>
@@ -42,19 +42,19 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex items-start gap-4">
-              <Sparkles className="w-6 h-6 text-primary-600 mt-1" />
+              <Sparkles className="w-6 h-6 text-accent-400 mt-1" />
               <div>
                 <h2 className="text-lg font-semibold mb-1">Primary CTA</h2>
-                <p className="text-sm text-slate-700 leading-relaxed">
+                <p className="text-sm text-secondary-100 leading-relaxed">
                   Join La Sesh - open sessions, templates, and real workflows.
                 </p>
-                <p className="text-sm text-slate-600 leading-relaxed mt-3">
+                <p className="text-sm text-secondary-200 leading-relaxed mt-3">
                   Share your playbooks, iterate with the community, and bring live cases to refine together.
                 </p>
               </div>
             </div>
             <button
-              className="inline-flex items-center gap-2 self-start md:self-center px-5 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+              className="inline-flex items-center gap-2 self-start md:self-center px-5 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
               onClick={handleComplete}
             >
               Confirm closing
@@ -70,34 +70,30 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
           className="grid md:grid-cols-3 gap-4"
         >
           <div className="card">
-            <h3 className="text-sm font-semibold text-slate-800 mb-2">Next step</h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <h3 className="text-sm font-semibold text-secondary-50 mb-2">Next step</h3>
+            <p className="text-sm text-secondary-200 leading-relaxed">
               Document which part of the stack you will pilot this week.
             </p>
           </div>
           <div className="card">
-            <h3 className="text-sm font-semibold text-slate-800 mb-2">Feedback loop</h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <h3 className="text-sm font-semibold text-secondary-50 mb-2">Feedback loop</h3>
+            <p className="text-sm text-secondary-200 leading-relaxed">
               Bring results to La Sesh to tweak prompts, tools, or guardrails.
             </p>
           </div>
           <div className="card">
-            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-slate-800">
-              <Share2 className="w-4 h-4 text-primary-600" />
+            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-secondary-50">
+              <Share2 className="w-4 h-4 text-accent-400" />
               Share the talk
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-secondary-200 leading-relaxed">
               Send the deck to the team to keep momentum and conversation alive.
             </p>
           </div>
         </motion.div>
 
         {isCompleted && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-sm text-primary-600 text-center"
-          >
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-accent-300 text-center">
             Marked as completed. Thank you!
           </motion.p>
         )}

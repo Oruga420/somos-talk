@@ -84,10 +84,10 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
                 {item.icon}
                 <div>
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <p className="text-sm text-slate-600">{item.description}</p>
+                  <p className="text-sm text-secondary-200">{item.description}</p>
                 </div>
               </div>
-              <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
+              <ul className="space-y-2 text-sm text-secondary-100 leading-relaxed">
                 {item.bullets.map((bullet) => (
                   <li key={bullet}>- {bullet}</li>
                 ))}
@@ -104,12 +104,12 @@ export default function ShowcaseSlide({ onComplete, completedSections }: Showcas
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
           >
             Showcase covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

@@ -34,13 +34,13 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-primary-500 mb-4">
+          <p className="text-sm uppercase tracking-[0.35em] text-accent-400 mb-4">
             Somos - Assent
           </p>
           <h1 className="slide-title">
             AI that amplifies human judgment
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-6 leading-relaxed">
+          <p className="text-xl text-secondary-200 max-w-3xl mx-auto mt-6 leading-relaxed">
             This session shows how we operate AI day to day:
             how we calibrate the room, stack context, and ship workflows that already drive value at Assent.
             No hype, just delivery.
@@ -56,11 +56,11 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           <div className="grid md:grid-cols-2 gap-6">
             {OVERVIEW_ITEMS.map((item) => (
               <div key={item.title} className="card h-full">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 mb-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary-800/70 border border-primary-700/60 mb-4">
                   {item.icon}
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                <p className="text-secondary-200 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -71,21 +71,21 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="card bg-gradient-to-br from-primary-50 to-white">
+          <div className="card bg-gradient-to-br from-primary-800/50 to-primary-900/60 border border-primary-800/60">
             <h3 className="text-xl font-semibold mb-4">Mindset</h3>
-            <p className="text-gray-700 mb-6 leading-relaxed">
+            <p className="text-secondary-100 mb-6 leading-relaxed">
               Core belief: AI does not replace your expertise, it amplifies it.
               When we stack context, design guardrails, and build tools that match our workflows,
               AI becomes a multiplier for human judgment instead of a replacement.
             </p>
             <div className="flex flex-wrap gap-3">
-              <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
+              <span className="inline-flex items-center rounded-full bg-primary-800/70 px-3 py-1 text-sm font-medium text-accent-300 border border-primary-700/60">
                 Calibrate fast
               </span>
-              <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
+              <span className="inline-flex items-center rounded-full bg-primary-800/70 px-3 py-1 text-sm font-medium text-accent-300 border border-primary-700/60">
                 Operate with guardrails
               </span>
-              <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700">
+              <span className="inline-flex items-center rounded-full bg-primary-800/70 px-3 py-1 text-sm font-medium text-accent-300 border border-primary-700/60">
                 Share real playbooks
               </span>
             </div>
@@ -104,12 +104,12 @@ export default function WelcomeSlide({ onComplete, completedSections }: WelcomeS
                 onComplete('welcome')
               }
             }}
-            className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
           >
             Room is ready - jump to Context Stacking
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">
+            <p className="text-sm text-accent-300 mt-3">
               Marked as completed.
             </p>
           )}

@@ -56,12 +56,12 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               <MessageSquare className="w-5 h-5 text-primary-600" />
               <h2 className="text-lg font-semibold">What it solves</h2>
             </div>
-            <ul className="space-y-3 text-gray-700 leading-relaxed">
+            <ul className="space-y-3 text-secondary-100 leading-relaxed">
               {BENEFITS.map((benefit) => (
                 <li key={benefit}>- {benefit}</li>
               ))}
             </ul>
-            <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed">
+            <div className="mt-4 rounded-lg border border-primary-700/60 bg-primary-900/50 p-4 text-sm text-secondary-200 leading-relaxed">
               Internal metric: roughly 30% fewer "where is that file?" tickets in high-volume teams.
             </div>
           </div>
@@ -73,9 +73,9 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
             </div>
             <div className="space-y-3">
               {STACK.map((layer) => (
-                <div key={layer.title} className="rounded-lg bg-white border border-slate-200 p-4">
-                  <h3 className="text-sm font-semibold text-slate-800 mb-1">{layer.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{layer.detail}</p>
+                <div key={layer.title} className="rounded-lg bg-primary-900/60 border border-primary-700/60 p-4">
+                  <h3 className="text-sm font-semibold text-secondary-50 mb-1">{layer.title}</h3>
+                  <p className="text-sm text-secondary-200 leading-relaxed">{layer.detail}</p>
                 </div>
               ))}
             </div>
@@ -93,7 +93,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               <ShieldCheck className="w-4 h-4 text-primary-600" />
               Guardrails
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-secondary-200 leading-relaxed">
               Channel-aware permissions, PII filters, audit trail for prompts and responses.
             </p>
           </div>
@@ -102,7 +102,7 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               <BarChart3 className="w-4 h-4 text-primary-600" />
               Measurement
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-secondary-200 leading-relaxed">
               Adoption dashboards: resolved questions, hot topics, and time saved per team.
             </p>
           </div>
@@ -111,8 +111,8 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
               <Bot className="w-4 h-4 text-primary-600" />
               Demo idea
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed flex items-start gap-2">
-              <PlayCircle className="w-4 h-4 text-primary-600 mt-1 shrink-0" />
+            <p className="text-sm text-secondary-200 leading-relaxed flex items-start gap-2">
+              <PlayCircle className="w-4 h-4 text-accent-400 mt-1 shrink-0" />
               <span>Ask "What is our travel policy?" and "Where is the vendor contract template?" to show contextual accuracy.</span>
             </p>
           </div>
@@ -126,12 +126,12 @@ export default function MCPSlide({ onComplete, completedSections }: SlackBotSlid
         >
           <button
             onClick={handleComplete}
-            className="px-6 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors"
+            className="px-6 py-3 rounded-lg bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 hover:bg-accent-400 transition-colors"
           >
             Slack bot covered
           </button>
           {isCompleted && (
-            <p className="text-sm text-primary-600 mt-3">Marked as completed.</p>
+            <p className="text-sm text-accent-300 mt-3">Marked as completed.</p>
           )}
         </motion.div>
       </div>

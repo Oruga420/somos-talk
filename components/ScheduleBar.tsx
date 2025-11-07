@@ -31,14 +31,14 @@ export default function ScheduleBar({ currentSlideIndex }: ScheduleBarProps) {
   const activeSlot = SLIDE_TO_SLOT[currentSlideIndex] ?? 0
 
   return (
-    <div className="hidden md:block fixed top-0 right-0 h-screen w-72 bg-white/90 backdrop-blur-sm border-l border-gray-200 z-40">
+    <div className="hidden md:block fixed top-0 right-0 h-screen w-72 bg-primary-900/80 backdrop-blur-lg border-l border-primary-800/70 z-40 text-secondary-100">
       <div className="p-4 space-y-4">
-        <div className="flex items-center justify-between text-gray-700">
+        <div className="flex items-center justify-between text-secondary-200">
           <div className="flex items-center space-x-2">
-            <Clock className="w-4 h-4" />
-            <span className="text-sm font-semibold">Agenda</span>
+            <Clock className="w-4 h-4 text-accent-400" />
+            <span className="text-sm font-semibold tracking-wide uppercase">Agenda</span>
           </div>
-          <span className="text-xs text-gray-500">Slide {currentSlideIndex + 1}</span>
+          <span className="text-xs text-secondary-400">Slide {currentSlideIndex + 1}</span>
         </div>
 
         <div className="space-y-3">
@@ -52,19 +52,25 @@ export default function ScheduleBar({ currentSlideIndex }: ScheduleBarProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2, delay: index * 0.03 }}
                 className={`rounded-lg border p-3 text-sm transition-colors ${
-                  isActive ? 'border-primary-300 bg-primary-50' : 'border-gray-200 bg-white'
+                  isActive
+                    ? 'border-accent-400/60 bg-primary-800/70 shadow-lg shadow-primary-900/30'
+                    : 'border-primary-800 bg-primary-900/40'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className={`font-semibold ${isActive ? 'text-primary-700' : 'text-gray-800'}`}>
+                  <span
+                    className={`font-semibold ${
+                      isActive ? 'text-accent-300' : 'text-secondary-100'
+                    }`}
+                  >
                     {slot.title}
                   </span>
-                  <span className="text-xs text-gray-500">{slot.time}</span>
+                  <span className="text-xs text-secondary-400">{slot.time}</span>
                 </div>
 
                 {isActive && (
-                  <div className="h-1 w-full bg-primary-100 rounded">
-                    <div className="h-1 bg-primary-500 rounded w-1/2" />
+                  <div className="h-1 w-full rounded bg-primary-800">
+                    <div className="h-1 w-1/2 rounded bg-accent-400" />
                   </div>
                 )}
               </motion.div>
