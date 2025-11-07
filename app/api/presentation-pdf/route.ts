@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import PDFDocument from 'pdfkit'
 import { PassThrough, Readable } from 'stream'
 import { join } from 'path'
+import { readFileSync } from 'fs'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -58,15 +59,19 @@ export async function GET() {
 
   const now = new Date()
 
+  const fontPath = join(process.cwd(), 'public', 'fonts', 'OpenSans.ttf')
+  const fontData = readFileSync(fontPath)
+  doc.registerFont('OpenSans', fontData)
+
   doc
     .fillColor('#0a1b2e')
-    .font('Helvetica-Bold')
+    .font('OpenSans')
     .fontSize(22)
     .text('Somos Talk - AI Patterns for Real Teams', { align: 'center' })
 
   doc
     .moveDown(0.5)
-    .font('Helvetica')
+    .font('OpenSans')
     .fontSize(11)
     .fillColor('#15385a')
     .text(`Generated on ${now.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}`, {
@@ -76,7 +81,7 @@ export async function GET() {
   doc.moveDown(1.5)
 
   doc
-    .font('Helvetica')
+    .font('OpenSans')
     .fontSize(12)
     .fillColor('#204c71')
     .text(
@@ -88,7 +93,7 @@ export async function GET() {
 
   SECTIONS.forEach((section) => {
     doc
-      .font('Helvetica-Bold')
+      .font('OpenSans')
       .fontSize(14)
       .fillColor('#0f2741')
       .text(section.title, { underline: false })
@@ -97,7 +102,7 @@ export async function GET() {
 
     section.bullets.forEach((bullet) => {
       doc
-        .font('Helvetica')
+        .font('OpenSans')
         .fontSize(12)
         .fillColor('#15385a')
         .text(`• ${bullet}`, { indent: 14, continued: false })
@@ -107,7 +112,7 @@ export async function GET() {
   })
 
   doc
-    .font('Helvetica-Bold')
+    .font('OpenSans')
     .fontSize(12)
     .fillColor('#12c3b0')
     .text('Join La Sesh to keep iterating with live workflows, templates, and community feedback.')
