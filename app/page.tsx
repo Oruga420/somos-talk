@@ -27,6 +27,7 @@ const slides = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [completedSections, setCompletedSections] = useState<string[]>([])
+  const [isPreparingPrint, setIsPreparingPrint] = useState(false)
 
   const progress = ((currentSlide + 1) / slides.length) * 100
 
@@ -61,6 +62,49 @@ export default function Home() {
     toast.success(`Descargando ${templateName}...`)
   }
 
+  const downloadPresentation = () => {
+    if (isPreparingPrint) {
+      return
+    }
+
+    const printRoot = document.getElementById('print-slide-root')
+    if (!printRoot) {
+      toast.error('No se pudo preparar la presentación para imprimir.')
+      return
+    }
+
+    setIsPreparingPrint(true)
+
+    let mediaQueryList: MediaQueryList | null = null
+
+    function finalizePrint() {
+      setIsPreparingPrint(false)
+      window.removeEventListener('afterprint', finalizePrint)
+      if (mediaQueryList) {
+        mediaQueryList.removeEventListener('change', handleChange)
+      }
+    }
+
+    function handleChange(event: MediaQueryListEvent) {
+      if (!event.matches) {
+        finalizePrint()
+      }
+    }
+
+    window.addEventListener('afterprint', finalizePrint)
+
+    if (typeof window.matchMedia === 'function') {
+      mediaQueryList = window.matchMedia('print')
+      mediaQueryList.addEventListener('change', handleChange)
+    }
+
+    toast('Selecciona "Guardar como PDF" en la ventana de impresión.')
+
+    setTimeout(() => {
+      window.print()
+    }, 100)
+  }
+
   const CurrentSlideComponent = slides[currentSlide].component
 
   useEffect(() => {
@@ -87,73 +131,101 @@ export default function Home() {
   }, [currentSlide])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <div className="progress-bar">
-          <div className="progress-fill" style={{ width: `${progress}%` }} />
-        </div>
-      </div>
-
-      <div className="fixed top-4 right-4 z-40 flex items-center space-x-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={prevSlide}
-            disabled={currentSlide === 0}
-            className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            disabled={currentSlide === slides.length - 1}
-            className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+    <>
+      <div className="no-print min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <div className="progress-bar">
+            <div className="progress-fill" style={{ width: `${progress}%` }} />
+          </div>
         </div>
 
-        <div className="text-sm text-gray-600">
-          {currentSlide + 1} / {slides.length}
-        </div>
-      </div>
+        <div className="fixed top-4 right-4 z-40 flex items-center space-x-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={prevSlide}
+              disabled={currentSlide === 0}
+              className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-      <div className="md:pr-72">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-          >
-            <CurrentSlideComponent
-              onComplete={markSectionComplete}
-              onDownload={downloadTemplate}
-              completedSections={completedSections}
+            <button
+              onClick={nextSlide}
+              disabled={currentSlide === slides.length - 1}
+              className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="text-sm text-gray-600">
+            {currentSlide + 1} / {slides.length}
+          </div>
+        </div>
+
+        <div className="md:pr-72">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CurrentSlideComponent
+                onComplete={markSectionComplete}
+                onDownload={downloadTemplate}
+                completedSections={completedSections}
+                {...(slides[currentSlide].id === 'closing'
+                  ? {
+                      onDownloadPresentation: downloadPresentation,
+                      isPreparingPresentationDownload: isPreparingPrint,
+                    }
+                  : {})}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrentSlide(index)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentSlide
+                  ? 'bg-primary-600'
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
             />
-          </motion.div>
-        </AnimatePresence>
+          ))}
+        </div>
+
+        <ScheduleBar currentSlideIndex={currentSlide} />
       </div>
 
-      <div className="fixed bottom-4 right-4 z-40 flex space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setCurrentSlide(index)
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide
-                ? 'bg-primary-600'
-                : 'bg-gray-300 hover:bg-gray-400'
-            }`}
-          />
+      <div
+        id="print-slide-root"
+        className={`print-only absolute left-[-9999px] top-0 w-[1024px] ${isPreparingPrint ? 'block' : 'hidden'}`}
+        aria-hidden={!isPreparingPrint}
+      >
+        {slides.map(({ id, component: SlideComponent }) => (
+          <div key={`print-${id}`} className="print-slide bg-white min-h-screen flex flex-col justify-center p-8">
+            <SlideComponent
+              onComplete={() => {}}
+              onDownload={(templateName: string) => {
+                if (process.env.NODE_ENV !== 'production') {
+                  console.debug('Descarga de plantilla omitida en vista de impresión:', templateName)
+                }
+              }}
+              completedSections={[]}
+            />
+          </div>
         ))}
       </div>
-
-      <ScheduleBar currentSlideIndex={currentSlide} />
-    </div>
+    </>
   )
 }

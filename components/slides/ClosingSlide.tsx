@@ -1,15 +1,22 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Share2 } from 'lucide-react'
+import { ArrowRight, Sparkles, Share2, Download } from 'lucide-react'
 
 interface ClosingSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
+  onDownloadPresentation?: () => void
+  isPreparingPresentationDownload?: boolean
   completedSections: string[]
 }
 
-export default function ClosingSlide({ onComplete, completedSections }: ClosingSlideProps) {
+export default function ClosingSlide({
+  onComplete,
+  onDownloadPresentation,
+  isPreparingPresentationDownload,
+  completedSections,
+}: ClosingSlideProps) {
   const isCompleted = completedSections.includes('closing')
 
   const handleComplete = () => {
@@ -91,6 +98,27 @@ export default function ClosingSlide({ onComplete, completedSections }: ClosingS
             </p>
           </div>
         </motion.div>
+
+        {onDownloadPresentation && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="flex flex-col items-center"
+          >
+            <button
+              onClick={onDownloadPresentation}
+              disabled={isPreparingPresentationDownload}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-600 text-white shadow hover:bg-primary-700 transition-colors disabled:cursor-not-allowed disabled:opacity-80"
+            >
+              <Download className="w-4 h-4" />
+              Descargar presentación (PDF)
+            </button>
+            <p className="text-xs text-slate-500 mt-2 text-center">
+              Se abrirá la ventana de impresión; elige "Guardar como PDF".
+            </p>
+          </motion.div>
+        )}
 
         {isCompleted && (
           <motion.p

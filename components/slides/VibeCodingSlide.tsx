@@ -6,6 +6,7 @@ import { Hammer, Wrench, Gauge, ServerCog } from 'lucide-react'
 interface CustomToolsSlideProps {
   onComplete: (sectionId: string) => void
   onDownload: (templateName: string) => void
+  onDownloadPresentation?: () => void
   completedSections: string[]
 }
 
