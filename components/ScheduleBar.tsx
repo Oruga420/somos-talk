@@ -8,13 +8,13 @@ interface ScheduleBarProps {
 }
 
 const SLOTS = [
-  { time: '00:00 - 00:10', title: 'Somos Welcome', key: 'welcome' },
-  { time: '00:10 - 00:40', title: 'Context Stacking', key: 'context-stacking' },
-  { time: '00:40 - 01:00', title: 'Slack Bot', key: 'slack-bot' },
-  { time: '01:00 - 01:25', title: 'Agentic Workflows', key: 'agentic-workflows' },
-  { time: '01:25 - 01:45', title: 'Custom Tools & Fine-tuning', key: 'custom-tools' },
-  { time: '01:45 - 01:55', title: 'Showcase', key: 'showcase' },
-  { time: '01:55 - 02:00', title: 'Closing & CTA', key: 'closing' },
+  { time: '00:00 - 00:03', title: 'Somos Welcome', key: 'welcome' },
+  { time: '00:03 - 00:13', title: 'Context Stacking', key: 'context-stacking' },
+  { time: '00:13 - 00:18', title: 'Slack Bot', key: 'slack-bot' },
+  { time: '00:18 - 00:25', title: 'Agentic Workflows', key: 'agentic-workflows' },
+  { time: '00:25 - 00:32', title: 'Custom Tools & Fine-tuning', key: 'custom-tools' },
+  { time: '00:32 - 00:35', title: 'Showcase', key: 'showcase' },
+  { time: '00:35 - 00:45', title: 'Closing & Q&A', key: 'closing' },
 ]
 
 const SLIDE_TO_SLOT: Record<number, number> = {
