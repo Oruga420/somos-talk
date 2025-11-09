@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
@@ -32,13 +31,11 @@ export default function RootLayout({
               href="/"
               className="group flex items-center gap-3 rounded-full border border-primary-200 bg-white/90 px-4 py-2 shadow-lg shadow-primary-200/70 backdrop-blur-lg transition-colors hover:border-secondary-400/60 hover:bg-white"
             >
-              <Image
-                src="/assent-somos-lockup.png"
+              <img
+                src="https://somoslatinxintech.com/_assets/media/77c4fa71aa2e7c60d736b9cf4dfa5f74.png"
                 alt="Assent and Somos logos"
-                width={240}
-                height={68}
-                priority
                 className="h-14 w-auto object-contain"
+                loading="lazy"
               />
             </Link>
           </header>
