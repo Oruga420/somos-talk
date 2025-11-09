@@ -32,26 +32,24 @@ export default function RootLayout({
               href="/"
               className="group flex items-center gap-0 rounded-full border border-primary-200 bg-white/90 p-1 pr-3 shadow-lg shadow-primary-200/70 backdrop-blur-lg transition-colors hover:border-secondary-400/60 hover:bg-white"
             >
-              <div className="flex items-center gap-3 rounded-full bg-primary-900/95 px-4 py-2">
+              <div className="flex items-center gap-4 rounded-full bg-primary-900/95 px-5 py-3">
                 <Image
                   src="/assent-logo.svg"
                   alt="Assent logo"
-                  width={104}
-                  height={28}
+                  width={118}
+                  height={32}
                   priority
-                  className="h-7 w-auto object-contain"
+                  className="h-9 w-auto object-contain"
                 />
                 <span className="text-sm font-semibold text-secondary-200">×</span>
-                <div className="relative flex items-center justify-center rounded-md bg-white/90 px-2 py-1 shadow-inner">
-                  <Image
-                    src="/somos-logo.png"
-                    alt="Somos logo"
-                    width={104}
-                    height={28}
-                    priority
-                    className="h-7 w-auto object-contain"
-                  />
-                </div>
+                <Image
+                  src="/somos-logo.png"
+                  alt="Somos logo"
+                  width={134}
+                  height={40}
+                  priority
+                  className="h-9 w-auto object-contain filter invert"
+                />
               </div>
             </Link>
           </header>
