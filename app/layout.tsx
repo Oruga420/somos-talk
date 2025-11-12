@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
@@ -32,18 +33,25 @@ export default function RootLayout({
               className="group flex items-center gap-3 rounded-full border border-primary-200 bg-white/90 px-4 py-2 shadow-lg shadow-primary-200/70 backdrop-blur-lg transition-colors hover:border-secondary-400/60 hover:bg-white"
             >
               <div className="flex items-center gap-3">
-                <img
-                  src="https://www.assent.com/wp-content/uploads/2025/02/logo.svg"
-                  alt="Assent logo"
-                  className="h-14 w-auto object-contain"
-                  loading="lazy"
-                />
-                <img
-                  src="/responsible-business-alliance.svg"
-                  alt="Responsible Business Alliance logo"
-                  className="h-14 w-auto object-contain"
-                  loading="lazy"
-                />
+                <div className="relative h-14 w-36">
+                  <Image
+                    src="https://www.assent.com/wp-content/uploads/2025/02/logo.svg"
+                    alt="Assent logo"
+                    fill
+                    priority
+                    sizes="144px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="relative h-14 w-36">
+                  <Image
+                    src="https://i.postimg.cc/XJ7KH4L7/Somos-LIT-Ottawa-BLK-2x.png"
+                    alt="Somos LIT Ottawa logo"
+                    fill
+                    sizes="144px"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </Link>
           </header>
