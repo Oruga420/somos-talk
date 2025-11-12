@@ -31,12 +31,20 @@ export default function RootLayout({
               href="/"
               className="group flex items-center gap-3 rounded-full border border-primary-200 bg-white/90 px-4 py-2 shadow-lg shadow-primary-200/70 backdrop-blur-lg transition-colors hover:border-secondary-400/60 hover:bg-white"
             >
-              <img
-                src="https://www.assent.com/wp-content/uploads/2025/02/logo.svg"
-                alt="Assent and Somos logos"
-                className="h-14 w-auto object-contain"
-                loading="lazy"
-              />
+              <div className="flex items-center gap-3">
+                <img
+                  src="https://www.assent.com/wp-content/uploads/2025/02/logo.svg"
+                  alt="Assent logo"
+                  className="h-14 w-auto object-contain"
+                  loading="lazy"
+                />
+                <img
+                  src="https://i.postimg.cc/XJ7KH4L7/Somos-LIT-Ottawa-BLK-2x.png"
+                  alt="Somos LIT Ottawa logo"
+                  className="h-14 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
             </Link>
           </header>
           <main className="pt-24">{children}</main>
