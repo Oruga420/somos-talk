@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Responsible Business Alliance logo</title>
+  <desc id="desc">Circular icon with two hands shaking and a checkmark</desc>
+  <circle cx="256" cy="256" r="240" fill="#101820"/>
+  <path d="M144 208a40 40 0 0 1 40-40h68l20 24h28l20-24h68a40 40 0 0 1 40 40v40h-52l-68 72h-24l-20-24h-12l-20 24h-24l-68-72h-52z" fill="#ffffff"/>
+  <path d="M156 240h36l44 48h12l20-24h24l20 24h12l44-48h36v28l-64 68a32 32 0 0 1-24 10h-20l-16-16-16 16h-20a32 32 0 0 1-24-10l-64-68z" fill="#78c2ad"/>
+  <path d="M340 128 384 80l20 20-64 76-48-44 20-24z" fill="#78c2ad"/>
+</svg>
